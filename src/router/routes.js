@@ -10,7 +10,7 @@ export const indexPage = {
 export const frameIn = [
   {
     path: "/",
-    redirect: "/index",
+    redirect: "index",
     component: () => import("@/pages/page-layout"),
     children: [indexPage]
   }

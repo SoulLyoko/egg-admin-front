@@ -138,13 +138,10 @@ export default {
      * @param {Object} form 搜索表单数据(不含自定义项)
      */
     searchChange(form, done) {
-      this.searchForm = this.filterObj(
-        Object.assign(
-          this.searchForm,
-          this.$refs.crud ? this.$refs.crud.searchForm : {},
-          form
-        ),
-        [undefined, null, ""]
+      this.searchForm = Object.assign(
+        this.searchForm,
+        this.$refs.crud ? this.$refs.crud.searchForm : {},
+        form
       );
       this.getDataList();
       done && done();
@@ -226,10 +223,13 @@ export default {
      * @param {Object} row 被过滤对象
      * @param {Array} value 过滤的值
      */
-    filterObj(row, value = [undefined, null]) {
+    filterObj(row) {
       let temp = {};
       for (const key in row) {
-        if (value.every(val => row[key] !== val)) {
+        if (
+          [undefined, null].every(val => row[key] !== val) &&
+          !key.includes("$")
+        ) {
           temp[key] = row[key];
         }
       }

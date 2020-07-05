@@ -8,6 +8,7 @@ module.exports = {
     parser: "babel-eslint"
   },
   rules: {
-    "no-unused-vars": 1
+    "no-unused-vars": 1,
+    "vue/no-unused-components": 1
   }
 };

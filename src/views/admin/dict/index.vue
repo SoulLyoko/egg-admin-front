@@ -18,11 +18,15 @@
       @row-update="handleUpdate"
       @row-del="rowDel"
     >
-      <template #menuLeft>
-        <d2-upload multiple v-model="uploadIds" :show-file-list="true" @change="fileListChange"></d2-upload>
-      </template>
-      <template #menu="{row,index}">
-        <el-button type="text" size="small" icon="el-icon-view" @click="preview(row,index)">预览</el-button>
+      <template #menu="{row}">
+        <el-button
+          type="text"
+          size="small"
+          icon="el-icon-plus"
+          @click="addDictItem(row)"
+          v-if="row.parentId === '0'"
+          >新增字典项</el-button
+        >
       </template>
     </avue-crud>
   </basic-container>
@@ -31,27 +35,28 @@
 <script>
 import crudMixin from "@/mixins/crud";
 import { tableOption } from "./option";
-import { getList, remove } from "@/api/sys/upload";
+import { getTree, create, update, remove } from "@/api/sys/dict";
 
 export default {
-  name: "sys-template",
+  name: "sys-dict",
   mixins: [crudMixin],
   data() {
     return {
       crudOption: {
-        getList,
+        getList: getTree,
+        create,
+        update,
         remove
       },
-      tableOption,
-      uploadIds: ""
+      tableOption
     };
   },
   methods: {
-    fileListChange(fileList) {
-      this.getDataList();
-    },
-    preview(row, index) {
-      this.$ImagePreview(this.tableData, index);
+    async addDictItem(row) {
+      this.$refs.crud.rowAdd();
+      await this.$nextTick();
+      this.formData.parentId = row._id;
+      this.formData.type = row.type;
     }
   }
 };

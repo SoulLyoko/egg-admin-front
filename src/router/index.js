@@ -7,6 +7,12 @@ import cookie from "js-cookie";
 import NProgress from "nprogress";
 Vue.use(VueRouter);
 
+// 解决跳转相同路由报错问题
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err);
+};
+
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
@@ -22,7 +28,7 @@ router.beforeEach(async (to, from, next) => {
   if (isFrameOut) {
     if (isLogin && to.name === "login") {
       // 已登录且前往页面时登录页时，跳转到首页
-      next({ name: "index" });
+      next("/");
     }
   } else {
     if (!isLogin) {

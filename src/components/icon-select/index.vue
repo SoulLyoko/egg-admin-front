@@ -1,12 +1,10 @@
 <template>
-  <basic-container>
-    index
-  </basic-container>
+  <div class="icon-select"></div>
 </template>
 
 <script>
 export default {
-  name: "index",
+  name: "icon-select",
   data() {
     return {};
   }

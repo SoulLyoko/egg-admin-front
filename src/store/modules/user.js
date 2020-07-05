@@ -1,10 +1,10 @@
 import { userLogin } from "@/api/sys/account.js";
-import cookie from "js-cookie";
+import { cookie } from "@/libs/util";
 import router from "@/router/index.js";
 
 export default {
   state: {
-    info: {}
+    info: cookie.get("userInfo") || {}
   },
   getters: {
     userInfo: state => {
@@ -27,6 +27,7 @@ export default {
   mutations: {
     SET_INFO(state, data) {
       state.info = data;
+      cookie.set("userInfo", data);
     }
   }
 };

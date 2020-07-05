@@ -1,8 +1,11 @@
 <template>
   <div class="header-menu">
-    <i class="header-folder el-icon-s-fold" @click="changeCollapse"></i>
     <el-menu mode="horizontal">
-      <menuItem :menu="menu" v-for="menu in headerMenu" :key="menu._id"></menuItem>
+      <menuItem
+        :menu="menu"
+        v-for="menu in headerMenu"
+        :key="menu._id"
+      ></menuItem>
     </el-menu>
   </div>
 </template>
@@ -19,11 +22,6 @@ export default {
   },
   computed: {
     ...mapGetters(["headerMenu"])
-  },
-  methods: {
-    changeCollapse() {
-      this.$store.commit("CHANGE_COLLAPSE");
-    }
   }
 };
 </script>

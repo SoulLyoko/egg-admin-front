@@ -1,7 +1,7 @@
 <template>
   <el-menu-item :index="menu.path" @click="menuItemClick(menu)">
     <i class="menu-icon" :class="menu.icon"></i>
-    <span class="menu-title">{{menu.title}}</span>
+    <span class="menu-title">{{ menu.title }}</span>
   </el-menu-item>
 </template>
 
@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     menuItemClick(menu) {
-      console.log("menuItemClick -> menu", menu);
       if (menu.parentId === "0") {
         this.$store.commit("SET_ASIDE_MENU", menu.children);
       } else {
@@ -32,5 +31,4 @@ export default {
 };
 </script>
 
-<style lang="" scoped>
-</style>
+<style lang="" scoped></style>
