@@ -8,31 +8,23 @@ export default {
     headerMenu: [],
     activeMenu: {},
     isCollapse: false,
-    perms: []
+    perms: [],
+    perm: {}
   },
   getters: {
-    asideMenu: state => {
-      return state.asideMenu;
-    },
-    headerMenu: state => {
-      return state.headerMenu;
-    },
-    activeMenu: state => {
-      return state.activeMenu;
-    },
-    isCollapse: state => {
-      return state.isCollapse;
-    },
-    perms: state => {
-      return state.perms;
-    }
+    asideMenu: state => state.asideMenu,
+    headerMenu: state => state.headerMenu,
+    activeMenu: state => state.activeMenu,
+    isCollapse: state => state.isCollapse,
+    perms: state => state.perms,
+    perm: state => state.perm
   },
   actions: {
     async getMenu({ commit, state }) {
       await getMenu().then(res => {
-        commit("SET_HEADER_MENU", res);
         const routes = generateRoutes(res);
         router.addRoutes(routes);
+        commit("SET_HEADER_MENU", routes);
         if (!state.asideMenu.length) {
           commit("SET_ASIDE_MENU", routes[0].children);
         }
@@ -44,7 +36,11 @@ export default {
   },
   mutations: {
     SET_ASIDE_MENU(state, data) {
-      state.asideMenu = data;
+      if (data && data.length) {
+        state.asideMenu = data;
+      } else {
+        state.asideMenu = state.headerMenu[0].children;
+      }
     },
     SET_HEADER_MENU(state, data) {
       state.headerMenu = data;
@@ -54,6 +50,14 @@ export default {
     },
     SET_PERMS(state, data) {
       state.perms = data;
+      const perm = {};
+      data.forEach(item => {
+        perm[item] = true;
+      });
+      state.perm = perm;
+    },
+    SET_ACTIVE_MENU(state, data) {
+      state.activeMenu = data;
     }
   }
 };

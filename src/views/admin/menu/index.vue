@@ -27,10 +27,10 @@
         ></avue-input-tree>
       </template>
       <template #icon="{row}">
-        <d2-icon :name="row.icon" />
+        <i :class="row.icon" />
       </template>
       <template #iconForm="{row}">
-        <d2-icon-select v-model="row.icon"></d2-icon-select>
+        <icon-select v-model="row.icon"></icon-select>
       </template>
       <template #menu="{row}">
         <el-button
@@ -39,8 +39,7 @@
           icon="el-icon-plus"
           @click="addMenu(row)"
           v-if="permission.addSubBtn"
-          >新增下级</el-button
-        >
+        >新增下级</el-button>
       </template>
       <template #componentForm="{row}">
         <el-select
@@ -50,6 +49,7 @@
           default-first-option
           placeholder="请选择或输入前端组件"
         >
+          <el-option label="Layout" value="Layout"></el-option>
           <el-option label="Main" value="Main"></el-option>
           <el-option label="Iframe" value="Iframe"></el-option>
         </el-select>
@@ -108,13 +108,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["perms"]),
+    ...mapGetters(["perm"]),
     permission() {
       return {
-        // addBtn: !!this.perm.sys_menu_save,
-        // editBtn: !!this.perm.sys_menu_update,
-        // delBtn: !!this.perm.sys_menu_delete,
-        // addSubBtn: !!this.perm.sys_menu_save
+        addBtn: !!this.perm.sys_menu_save,
+        editBtn: !!this.perm.sys_menu_update,
+        delBtn: !!this.perm.sys_menu_delete,
+        addSubBtn: !!this.perm.sys_menu_save
       };
     },
     menuTree() {
@@ -128,7 +128,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("d2admin/menu", ["getMenu"]),
+    ...mapActions(["getMenu"]),
     async addMenu(row) {
       this.$refs.crud.rowAdd();
       await this.$nextTick();

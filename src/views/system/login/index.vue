@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login-page">
     <div class="login-form">
       <center>
         <h1>
@@ -11,11 +11,7 @@
       <br />
       <el-form :model="form" ref="form" :rules="rules" @submit.native.prevent>
         <el-form-item prop="username">
-          <el-input
-            v-model="form.username"
-            prefix-icon="el-icon-user"
-            placeholder="用户名"
-          ></el-input>
+          <el-input v-model="form.username" prefix-icon="el-icon-user" placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
@@ -28,11 +24,7 @@
         <el-form-item prop="captcha">
           <el-input v-model="form.captcha" placeholder="验证码">
             <template slot="append">
-              <div
-                class="login-captcha"
-                v-html="captcha"
-                @click="refreshCaptcha"
-              ></div>
+              <div class="login-captcha" v-html="captcha" @click="refreshCaptcha"></div>
             </template>
           </el-input>
         </el-form-item>
@@ -42,8 +34,7 @@
             type="primary"
             native-type="submit"
             @click="handleLogin"
-            >登录</el-button
-          >
+          >登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -54,7 +45,7 @@
 import { getCaptcha } from "@/api/sys/account.js";
 
 export default {
-  name: "login",
+  name: "login-page",
   data() {
     return {
       form: {
@@ -99,7 +90,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login {
+.login-page {
   width: 100%;
   height: 100%;
   background: url("/img/background.svg") no-repeat fixed center;

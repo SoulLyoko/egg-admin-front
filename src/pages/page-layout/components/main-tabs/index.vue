@@ -1,17 +1,12 @@
 <template>
   <div class="main-tabs">
-    <el-tabs
-      :value="activeTab.name"
-      type="card"
-      @tab-click="tabClick"
-      @tab-remove="tabRemove"
-    >
+    <el-tabs :value="activeTab.path" type="card" @tab-click="tabClick" @tab-remove="tabRemove">
       <el-tab-pane
         v-for="tab in openTabs"
-        :key="tab.name"
+        :key="tab.path"
         :label="tab.meta.title"
-        :name="tab.name"
-        :closable="tab.name !== 'index'"
+        :name="tab.path"
+        :closable="tab.path !== '/index'"
       ></el-tab-pane>
     </el-tabs>
     <el-dropdown @command="handleCommand">
@@ -38,8 +33,8 @@ export default {
   methods: {
     ...mapActions(["closeTab", "closeAllTabs", "closeOtherTabs"]),
     tabClick(tab) {
-      if (this.$route.name === tab.name) return;
-      const route = this.openTabs.find(item => item.name === tab.name);
+      if (this.$route.path === tab.name) return;
+      const route = this.openTabs.find(item => item.path === tab.name);
       this.$router.push(route);
     },
     tabRemove(name) {

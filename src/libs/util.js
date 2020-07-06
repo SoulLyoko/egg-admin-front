@@ -5,19 +5,11 @@ import jscookie from "js-cookie";
 
 export const storage = {
   set(key, value) {
-    if (typeof value === "string") {
-      localStorage.setItem(key, value);
-    } else {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
+    localStorage.setItem(key, JSON.stringify(value));
   },
   get(key) {
     const value = localStorage.getItem(key);
-    if (value) {
-      return JSON.parse(value);
-    } else {
-      return value;
-    }
+    return value ? JSON.parse(value) : value;
   },
   remove(key) {
     localStorage.removeItem(key);
@@ -25,20 +17,11 @@ export const storage = {
 };
 
 export const cookie = {
-  set(key, value) {
-    if (typeof value === "string") {
-      jscookie.set(key, value);
-    } else {
-      jscookie.set(key, JSON.stringify(value));
-    }
+  set(key, value, config) {
+    jscookie.set(key, value, { expires: 1, ...config });
   },
   get(key) {
-    const value = jscookie.get(key);
-    if (value) {
-      return JSON.parse(value);
-    } else {
-      return value;
-    }
+    return jscookie.get(key);
   },
   remove(key) {
     jscookie.remove(key);

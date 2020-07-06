@@ -1,0 +1,28 @@
+//主题名称
+$theme-name: "default";
+
+//页面背景
+$container-bg: #eee;
+
+// 侧边栏logo背景色
+$aside-logo-bgc: #333;
+// 侧边栏logo字体色
+$aside-logo-color: #fff;
+
+//侧边栏菜单背景色
+$aside-menu-bgc: #333;
+//侧边栏菜单项字体色
+$aside-menu-item-color: #fff;
+//侧边栏活动菜单背景色
+$aside-menu-item-bgc-active: #000000aa;
+//侧边栏活动菜单字体色
+$aside-menu-item-color-active: #409eff !important;
+//侧边栏菜单hover背景色
+$aside-menu-item-bgc-hover: #000000aa;
+
+//顶栏背景色
+$header-bgc: #fff;
+//顶栏字体色
+$header-color: #000;
+
+@import "./theme.scss";

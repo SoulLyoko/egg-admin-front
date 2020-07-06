@@ -1,0 +1,37 @@
+.theme-#{$theme-name} {
+  .container {
+    background: $container-bg;
+    .aside {
+      .aside-logo {
+        background-color: $aside-logo-bgc;
+        color: $aside-logo-color;
+      }
+      .aside-menu {
+        background-color: $aside-menu-bgc;
+        .el-submenu__title,
+        .el-menu-item {
+          * {
+            color: $aside-menu-item-color;
+          }
+          &.is-active {
+            background-color: $aside-menu-item-bgc-active;
+            * {
+              color: $aside-menu-item-color-active;
+            }
+          }
+          &:hover {
+            background-color: $aside-menu-item-bgc-hover;
+          }
+        }
+      }
+    }
+
+    .header {
+      background-color: $header-bgc;
+      color: $header-color;
+    }
+
+    .main {
+    }
+  }
+}

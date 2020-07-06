@@ -8,6 +8,9 @@ import "@smallwei/avue/lib/index.css";
 // 全局组件
 import "@/components";
 
+// 全局样式
+import "@/assets/style/public.scss";
+
 // util
 import * as util from "@/libs/util";
 

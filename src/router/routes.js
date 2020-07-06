@@ -1,5 +1,5 @@
 export const indexPage = {
-  path: "index",
+  path: "/index",
   name: "index",
   meta: {
     title: "首页"
@@ -10,7 +10,7 @@ export const indexPage = {
 export const frameIn = [
   {
     path: "/",
-    redirect: "index",
+    redirect: "/index",
     component: () => import("@/pages/page-layout"),
     children: [indexPage]
   }

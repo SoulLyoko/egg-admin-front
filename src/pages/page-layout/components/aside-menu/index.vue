@@ -1,6 +1,6 @@
 <template>
   <div class="aside-menu">
-    <el-menu :collapse="isCollapse" background-color="#333" text-color="#fff">
+    <el-menu :collapse="isCollapse" :default-active="activeMenu.path" unique-opened>
       <template v-for="menu in asideMenu">
         <menuSub :menu="menu" :key="menu._id" v-if="menu.children&&menu.children.length"></menuSub>
         <menuItem :menu="menu" :key="menu._id" v-else></menuItem>
@@ -21,7 +21,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(["asideMenu", "isCollapse"])
+    ...mapGetters(["asideMenu", "isCollapse", "activeMenu"])
   }
 };
 </script>

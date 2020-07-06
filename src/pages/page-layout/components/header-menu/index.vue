@@ -1,11 +1,7 @@
 <template>
   <div class="header-menu">
-    <el-menu mode="horizontal">
-      <menuItem
-        :menu="menu"
-        v-for="menu in headerMenu"
-        :key="menu._id"
-      ></menuItem>
+    <el-menu mode="horizontal" :default-active="activeHeader">
+      <menuItem :menu="menu" v-for="menu in headerMenu" :key="menu._id"></menuItem>
     </el-menu>
   </div>
 </template>
@@ -21,7 +17,10 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(["headerMenu"])
+    ...mapGetters(["headerMenu", "activeMenu"]),
+    activeHeader() {
+      return this.activeMenu.matched[0].path;
+    }
   }
 };
 </script>

@@ -4,14 +4,12 @@
 
   .aside {
     width: 220px !important;
-    color: #eee;
     transition: width 0.5s;
     &.is-collapse {
       width: 60px !important;
       overflow: hidden;
     }
     .aside-logo {
-      background-color: #333;
       height: 60px;
       line-height: 60px;
       text-align: center;
@@ -19,10 +17,10 @@
       font-weight: 600;
     }
     .aside-menu {
-      background-color: #333;
       height: calc(100% - 60px);
       .el-menu {
         border-right: none;
+        background-color: #ffffff00;
       }
       .menu-title {
         margin-left: 5px;
@@ -38,13 +36,13 @@
       line-height: 60px;
       width: 30px;
       font-size: 30px;
-      color: #333;
     }
     .header-menu {
       height: 60px;
       width: calc((100% - 30px) / 2);
       .el-menu {
         border-bottom: none;
+        background-color: #ffffff00;
         .el-menu-item {
           border-bottom: none;
         }
@@ -69,20 +67,13 @@
 
   .main {
     padding: 0;
-    background-color: #eee;
     .main-tabs {
       display: flex;
-      background-color: #fff;
       height: 40px;
       .el-tabs {
         width: calc(100% - 25px);
         .el-tabs__header {
           margin: 0;
-          .el-tabs__item {
-            &.is-active {
-              background-color: #fff;
-            }
-          }
         }
         .el-tabs__content {
           display: none;

@@ -6,9 +6,14 @@
     </el-aside>
     <el-container class="header-main">
       <el-header class="header">
-        <i class="header-folder el-icon-s-fold" @click="changeCollapse"></i>
+        <i
+          class="header-folder"
+          :class="isCollapse?'el-icon-s-unfold':'el-icon-s-fold'"
+          @click="changeCollapse"
+        ></i>
         <headerMenu></headerMenu>
         <div class="header-right">
+          <headerTheme></headerTheme>
           <headerUser></headerUser>
         </div>
       </el-header>
@@ -26,13 +31,21 @@
 import asideLogo from "./components/aside-logo";
 import asideMenu from "./components/aside-menu";
 import headerMenu from "./components/header-menu";
-import mainTabs from "./components/main-tabs";
 import headerUser from "./components/header-user";
+import headerTheme from "./components/header-theme";
+import mainTabs from "./components/main-tabs";
 import { mapGetters } from "vuex";
 
 export default {
   name: "page-layout",
-  components: { asideLogo, asideMenu, headerMenu, mainTabs, headerUser },
+  components: {
+    asideLogo,
+    asideMenu,
+    headerMenu,
+    headerUser,
+    headerTheme,
+    mainTabs
+  },
   data() {
     return {};
   },
@@ -48,5 +61,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./index";
+@import "@/assets/style/theme/base.scss";
 </style>
