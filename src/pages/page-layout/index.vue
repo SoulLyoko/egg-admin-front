@@ -8,19 +8,22 @@
       <el-header class="header">
         <i
           class="header-folder"
-          :class="isCollapse?'el-icon-s-unfold':'el-icon-s-fold'"
+          :class="isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
           @click="changeCollapse"
         ></i>
         <headerMenu></headerMenu>
         <div class="header-right">
           <headerTheme></headerTheme>
+          <headerFullsceen></headerFullsceen>
           <headerUser></headerUser>
         </div>
       </el-header>
       <el-main class="main">
         <mainTabs></mainTabs>
         <div class="main-view">
-          <router-view></router-view>
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
         </div>
       </el-main>
     </el-container>
@@ -31,8 +34,9 @@
 import asideLogo from "./components/aside-logo";
 import asideMenu from "./components/aside-menu";
 import headerMenu from "./components/header-menu";
-import headerUser from "./components/header-user";
 import headerTheme from "./components/header-theme";
+import headerFullsceen from "./components/header-fullscreen";
+import headerUser from "./components/header-user";
 import mainTabs from "./components/main-tabs";
 import { mapGetters } from "vuex";
 
@@ -42,8 +46,9 @@ export default {
     asideLogo,
     asideMenu,
     headerMenu,
-    headerUser,
     headerTheme,
+    headerFullsceen,
+    headerUser,
     mainTabs
   },
   data() {

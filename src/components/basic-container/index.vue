@@ -7,6 +7,9 @@
 </template>
 
 <script>
+/**
+ * 基础容器
+ */
 export default {
   name: "basic-container",
   data() {
@@ -15,8 +18,12 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .basic-container {
+  height: 100%;
+  .el-scrollbar__view {
+    height: 100%;
+  }
   .basic-container-card {
     height: 100%;
     .el-card__body {

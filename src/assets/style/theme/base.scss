@@ -31,15 +31,18 @@
   .header {
     height: 60px !important;
     display: flex;
+    padding: 0;
     .header-folder {
       cursor: pointer;
+      text-align: center;
       line-height: 60px;
-      width: 30px;
+      width: 50px;
       font-size: 30px;
     }
     .header-menu {
       height: 60px;
-      width: calc((100% - 30px) / 2);
+      width: calc(100% - 300px);
+      overflow: hidden;
       .el-menu {
         border-bottom: none;
         background-color: #ffffff00;
@@ -53,14 +56,12 @@
     }
     .header-right {
       display: inline-flex;
-      width: calc((100% - 30px) / 2);
+      width: 250px;
       align-items: center;
       justify-content: flex-end;
-      .header-user {
+      [class*="header-"] {
         padding: 10px;
-        .header-user-username {
-          cursor: pointer;
-        }
+        cursor: pointer;
       }
     }
   }
@@ -82,8 +83,9 @@
       .main-tabs-menu {
         padding: 0;
         width: 25px;
-        height: 40px;
+        height: 41px;
         text-align: center;
+        background-color: #ffffff00;
       }
     }
     .main-view {

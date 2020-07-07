@@ -50,10 +50,10 @@ export default {
           ...this.sort,
           ...this.searchForm
         })
-        .then(response => {
-          console.log(response);
-          this.tableData = response.data || [];
-          this.page.total = response.total || 0;
+        .then(res => {
+          console.log(res);
+          this.tableData = res.data || [];
+          this.page.total = res.total || 0;
         })
         .catch(e => {
           this.tableData = [];

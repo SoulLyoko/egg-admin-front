@@ -18,7 +18,7 @@
     :on-success="handleSuccess"
   >
     <template v-if="!$slots.default">
-      <i class="el-icon-plus" v-if="listType==='picture-card'"></i>
+      <i class="el-icon-plus" v-if="listType === 'picture-card'"></i>
       <el-button size="small" type="primary" v-else>点击上传</el-button>
     </template>
     <slot></slot>
@@ -26,6 +26,12 @@
 </template>
 
 <script>
+/**
+ * 文件上传组件
+ * @props value:已上传的id(多个,分割);accept:接受上传的文件类型;disabled:是否禁用;drag:是否启用拖拽上传;limit:最大允许上传个数;
+ *        listType:文件列表的类型;multiple:是否支持多选文件;showFileList:是否显示已上传文件列表;
+ * @events success(res,file,fileList),成功回调;error,失败回调;remove(file, fileList),删除文件回调;change(fileList),文件列表变化时回调;
+ */
 import { getList, remove } from "@/api/sys/upload";
 
 export default {
@@ -101,7 +107,7 @@ export default {
             index = i;
           }
         });
-        this.$ImagePreview(this.fileList, index);
+        this.$ImagePreview(this.fileList, index); //avue预览图片
       } else {
         window.open(file.url, "_blank");
       }
@@ -110,5 +116,4 @@ export default {
 };
 </script>
 
-<style lang="" scoped>
-</style>
+<style lang="" scoped></style>
