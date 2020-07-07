@@ -38,7 +38,7 @@ export default {
     SET_ASIDE_MENU(state, data) {
       if (data && data.length) {
         state.asideMenu = data;
-      } else {
+      } else if (state.headerMenu.length) {
         state.asideMenu = state.headerMenu[0].children;
       }
     },

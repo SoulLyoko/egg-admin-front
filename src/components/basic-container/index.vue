@@ -17,13 +17,6 @@ export default {
 
 <style lang="scss" >
 .basic-container {
-  height: 100%;
-  .el-scrollbar__wrap {
-    overflow-x: auto;
-  }
-  .el-scrollbar__view {
-    height: calc(100% - 2px);
-  }
   .basic-container-card {
     height: 100%;
     .el-card__body {

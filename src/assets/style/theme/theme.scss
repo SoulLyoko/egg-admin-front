@@ -21,6 +21,9 @@
           }
           &:hover {
             background-color: $aside-menu-item-bgc-hover;
+            * {
+              color: $aside-menu-item-color-hover;
+            }
           }
         }
       }
@@ -29,9 +32,34 @@
     .header {
       background-color: $header-bgc;
       color: $header-color;
+      .header-user-username {
+        color: $header-color;
+      }
+      .header-menu {
+        .el-menu-item {
+          * {
+            color: $header-menu-item-color;
+          }
+          &.is-active {
+            background-color: $header-menu-item-bgc-active;
+            * {
+              color: $header-menu-item-color-active;
+            }
+          }
+          &:hover {
+            background-color: $header-menu-item-bgc-hover;
+            * {
+              color: $header-menu-item-color-hover;
+            }
+          }
+        }
+      }
     }
 
     .main {
+      .main-tabs {
+        background-color: $main-tabs-bgc;
+      }
     }
   }
 }

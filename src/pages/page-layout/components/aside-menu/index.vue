@@ -1,12 +1,12 @@
 <template>
-  <div class="aside-menu">
+  <el-scrollbar class="aside-menu">
     <el-menu :collapse="isCollapse" :default-active="activeMenu.path" unique-opened>
       <template v-for="menu in asideMenu">
         <menuSub :menu="menu" :key="menu._id" v-if="menu.children&&menu.children.length"></menuSub>
         <menuItem :menu="menu" :key="menu._id" v-else></menuItem>
       </template>
     </el-menu>
-  </div>
+  </el-scrollbar>
 </template>
 
 <script>

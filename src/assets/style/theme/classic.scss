@@ -1,1 +1,44 @@
-$theme-name: "classic"; //经典主题
+//主题名称
+$theme-name: "classic";
+
+//页面背景
+$container-bg: #fff;
+
+// 侧边栏logo背景色
+$aside-logo-bgc: #1890ff;
+// 侧边栏logo字体色
+$aside-logo-color: #fff;
+
+//侧边栏菜单背景色
+$aside-menu-bgc: #409eff11;
+//侧边栏菜单项字体色
+$aside-menu-item-color: #000;
+//侧边栏活动菜单背景色
+$aside-menu-item-bgc-active: #409eff;
+//侧边栏活动菜单字体色
+$aside-menu-item-color-active: #fff;
+//侧边栏菜单hover背景色
+$aside-menu-item-bgc-hover: #409eff;
+//侧边栏菜单hover字体色
+$aside-menu-item-color-hover: #fff;
+
+//顶栏背景色
+$header-bgc: #1890ff;
+//顶栏字体色
+$header-color: #fff;
+
+//顶栏菜单项字体色
+$header-menu-item-color: #fff;
+//顶栏活动菜单背景色
+$header-menu-item-bgc-active: #00000011;
+//顶栏活动菜单字体色
+$header-menu-item-color-active: #fff;
+//顶栏菜单hover背景色
+$header-menu-item-bgc-hover: #00000011;
+//顶栏菜单hover字体色
+$header-menu-item-color-hover: none;
+
+//标签栏背景色
+$main-tabs-bgc: #fff;
+
+@import "./theme.scss";

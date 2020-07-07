@@ -1,6 +1,14 @@
 <template>
   <div class="header-theme">
-    <i class="el-icon-brush"></i>
+    <i class="el-icon-brush" @click="open"></i>
+    <el-dialog title="主题设置" :visible.sync="dialogVisible" width="30%">
+      <el-radio-group v-model="activeTheme">
+        <el-radio v-for="theme in themeList" :key="theme.name" :label="theme.name">{{theme.title}}</el-radio>
+      </el-radio-group>
+      <center slot="footer">
+        <el-button type="primary" @click="dialogVisible=false">确 定</el-button>
+      </center>
+    </el-dialog>
   </div>
 </template>
 
@@ -12,19 +20,30 @@ export default {
   data() {
     return {
       themeList: [
-        { class: "default", name: "默认" },
-        { class: "classic", name: "经典" }
-      ]
+        { name: "default", title: "默认" },
+        { name: "classic", title: "经典" }
+      ],
+      dialogVisible: false,
+      activeTheme: ""
     };
   },
   computed: {
     ...mapGetters(["themeName"])
   },
+  watch: {
+    activeTheme(val) {
+      this.SET_THEME_NAME(val);
+    }
+  },
   created() {
     this.SET_THEME_NAME(this.themeName);
+    this.activeTheme = this.themeName;
   },
   methods: {
-    ...mapMutations(["SET_THEME_NAME"])
+    ...mapMutations(["SET_THEME_NAME"]),
+    open() {
+      this.dialogVisible = true;
+    }
   }
 };
 </script>
