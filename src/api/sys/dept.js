@@ -9,7 +9,14 @@ export function getList(params) {
 
 export function getTree(params) {
   return request({
-    url: "/dept/tree/get",
+    url: "/dept/get/tree",
+    params
+  });
+}
+
+export function getUserTree(params) {
+  return request({
+    url: "/dept/get/userTree",
     params
   });
 }

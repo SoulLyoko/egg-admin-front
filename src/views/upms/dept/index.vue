@@ -19,15 +19,16 @@
       @row-del="rowDel"
     >
       <template #parentIdForm="{row}">
-        <avue-input-tree
-          v-model="row.parentId"
-          placeholder="请选择上级部门"
-          :dic="deptTree"
-          :props="{label:'name',value:'_id'}"
-        ></avue-input-tree>
+        <dept-select v-model="row.parentId" :topLevel="true"></dept-select>
       </template>
       <template #menu="{row}">
-        <el-button type="text" size="small" icon="el-icon-plus" @click="addDept(row)">新增下级</el-button>
+        <el-button
+          type="text"
+          size="small"
+          icon="el-icon-plus"
+          @click="addDept(row)"
+          >新增下级</el-button
+        >
       </template>
     </avue-crud>
   </basic-container>
@@ -51,17 +52,6 @@ export default {
       },
       tableOption
     };
-  },
-  computed: {
-    deptTree() {
-      return [
-        {
-          name: "一级部门",
-          _id: "0",
-          children: this.tableData
-        }
-      ];
-    }
   },
   methods: {
     async addDept(row) {

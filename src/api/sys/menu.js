@@ -3,21 +3,21 @@ import request from "@/libs/axios";
 // 获取导航菜单
 export function getMenu() {
   return request({
-    url: "/menu/nav/get"
+    url: "/menu/get/nav"
   });
 }
 
 // 获取权限
 export function getPermissions() {
   return request({
-    url: "/menu/permissions/get"
+    url: "/menu/get/permissions"
   });
 }
 
 // 获取菜单管理列表树
 export function getTree(params) {
   return request({
-    url: "/menu/tree/get",
+    url: "/menu/get/tree",
     params
   });
 }

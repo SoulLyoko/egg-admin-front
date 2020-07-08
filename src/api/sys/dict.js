@@ -3,8 +3,15 @@ import request from "@/libs/axios";
 // 获取字典树
 export function getTree(params) {
   return request({
-    url: "/dict/tree/get",
+    url: "/dict/get/tree",
     params
+  });
+}
+
+// 获取字典type
+export function getDictType(type) {
+  return request({
+    url: "/dict/type/" + type
   });
 }
 
