@@ -5,7 +5,7 @@ import qs from "qs";
 import store from "@/store/index.js";
 
 const request = axios.create({
-  baseURL: "/api",
+  baseURL: process.env.VUE_APP_API_BASE,
   timeout: 15000, // 请求超时时间
   withCredentials: true
 });
@@ -55,5 +55,7 @@ request.interceptors.response.use(
     }
   }
 );
+
+window.axios = request; //avue字典
 
 export default request;

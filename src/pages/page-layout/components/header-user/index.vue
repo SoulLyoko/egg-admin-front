@@ -1,17 +1,22 @@
 <template>
   <div class="header-user">
     <el-dropdown>
-      <span class="header-user-username">{{
-        userInfo.username || "未知用户"
-      }}</span>
+      <span class="user-username">{{ userInfo.username || "未知用户" }}</span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item @click.native="open">修改密码</el-dropdown-item>
-        <el-dropdown-item @click.native="handleLogout"
-          >退出登陆</el-dropdown-item
-        >
+        <el-dropdown-item @click.native="open">
+          <i class="el-icon-lock"></i>修改密码
+        </el-dropdown-item>
+        <el-dropdown-item @click.native="handleLogout">
+          <i class="el-icon-switch-button"></i>退出登陆
+        </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
-    <el-dialog title="修改密码" :visible.sync="dialogVisible" width="30%">
+    <el-dialog
+      title="修改密码"
+      :visible.sync="dialogVisible"
+      width="30%"
+      append-to-body
+    >
       <el-form :model="form" :rules="rules" ref="form" label-width="80px">
         <el-form-item label="原密码" prop="oldPassword">
           <el-input v-model="form.oldPassword" type="password"></el-input>

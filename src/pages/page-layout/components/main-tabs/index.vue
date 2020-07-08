@@ -15,14 +15,14 @@
       ></el-tab-pane>
     </el-tabs>
     <el-dropdown @command="handleCommand">
-      <el-button
-        class="main-tabs-menu"
-        icon="el-icon-error"
-        @click="closeAllTabs"
-      ></el-button>
+      <el-button class="main-tabs-menu" icon="el-icon-arrow-down"></el-button>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="closeOtherTabs">关闭其他</el-dropdown-item>
-        <el-dropdown-item command="closeAllTabs">关闭全部</el-dropdown-item>
+        <el-dropdown-item command="closeOtherTabs">
+          <i class="el-icon-close"></i>关闭其他
+        </el-dropdown-item>
+        <el-dropdown-item command="closeAllTabs">
+          <i class="el-icon-error"></i>关闭全部</el-dropdown-item
+        >
       </el-dropdown-menu>
     </el-dropdown>
   </div>

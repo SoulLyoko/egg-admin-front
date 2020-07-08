@@ -10,7 +10,9 @@ export default {
   },
   getters: {
     activeTab: state => state.activeTab,
-    openTabs: state => state.openTabs
+    openTabs: state => state.openTabs,
+    keepAliveList: state =>
+      state.openTabs.filter(item => item.meta.cache).map(item => item.name)
   },
   actions: {
     openTab({ commit, state, getters }, to) {

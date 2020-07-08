@@ -1,9 +1,14 @@
 <template>
-  <div class="header-theme">
+  <div class="header-theme" @click="open">
     <el-tooltip effect="dark" content="主题" placement="bottom">
-      <i class="el-icon-brush" @click="open"></i>
+      <i class="el-icon-brush"></i>
     </el-tooltip>
-    <el-dialog title="主题设置" :visible.sync="dialogVisible" width="30%">
+    <el-dialog
+      title="主题设置"
+      :visible.sync="dialogVisible"
+      width="30%"
+      append-to-body
+    >
       <el-radio-group v-model="activeTheme">
         <el-radio
           v-for="theme in themeList"

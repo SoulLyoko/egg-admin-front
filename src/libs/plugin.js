@@ -13,6 +13,7 @@ import "@/assets/style/public.scss";
 
 // util
 import * as util from "@/libs/util";
+import dayjs from "dayjs";
 
 export default {
   async install(Vue, options) {
@@ -21,6 +22,7 @@ export default {
     Vue.config.productionTip = false;
     // util
     Vue.prototype.$util = util;
+    Vue.prototype.$day = dayjs;
 
     Vue.use(ElementUI);
     Vue.use(Avue);

@@ -32,7 +32,7 @@
     .header {
       background-color: $header-bgc;
       color: $header-color;
-      .header-user-username {
+      .user-username {
         color: $header-color;
       }
       .header-menu {
@@ -51,6 +51,13 @@
             * {
               color: $header-menu-item-color-hover;
             }
+          }
+        }
+      }
+      .header-right {
+        [class*="header-"] {
+          &:hover {
+            background-color: $header-right-item-bgc;
           }
         }
       }

@@ -1,17 +1,22 @@
 <template>
-  <el-scrollbar class="basic-container">
-    <el-card class="basic-container-card">
-      <slot></slot>
-    </el-card>
-  </el-scrollbar>
+  <div class="basic-container" :class="type">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
 /**
  * 基础容器
+ * @props type:容器模式,card卡片,full高度填满主区域,ghost透明背景
  */
 export default {
   name: "basic-container",
+  props: {
+    type: {
+      type: String,
+      default: "card"
+    }
+  },
   data() {
     return {};
   }
@@ -20,15 +25,22 @@ export default {
 
 <style lang="scss">
 .basic-container {
-  height: 100%;
-  .el-scrollbar__view {
-    height: 100%;
+  &.card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-top: none;
+    border-radius: 4px;
+    padding: 20px;
   }
-  .basic-container-card {
+  &.full {
+    height: calc(100% - 40px);
+    background-color: #fff;
+    padding: 20px;
+    overflow: auto;
+  }
+  &.ghost {
     height: 100%;
-    .el-card__body {
-      height: calc(100% - 30px);
-    }
+    overflow: auto;
   }
 }
 </style>

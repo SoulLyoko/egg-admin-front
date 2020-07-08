@@ -1,12 +1,20 @@
 <template>
-  <el-scrollbar class="aside-menu">
-    <el-menu :collapse="isCollapse" :default-active="activeMenu.path" unique-opened>
+  <div class="aside-menu">
+    <el-menu
+      :collapse="isCollapse"
+      :default-active="activeMenu.path"
+      unique-opened
+    >
       <template v-for="menu in asideMenu">
-        <menuSub :menu="menu" :key="menu._id" v-if="menu.children&&menu.children.length"></menuSub>
+        <menuSub
+          :menu="menu"
+          :key="menu._id"
+          v-if="menu.children && menu.children.length"
+        ></menuSub>
         <menuItem :menu="menu" :key="menu._id" v-else></menuItem>
       </template>
     </el-menu>
-  </el-scrollbar>
+  </div>
 </template>
 
 <script>
@@ -26,5 +34,4 @@ export default {
 };
 </script>
 
-<style lang="" scoped>
-</style>
+<style lang="" scoped></style>

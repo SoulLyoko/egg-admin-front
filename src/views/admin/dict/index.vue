@@ -55,8 +55,10 @@ export default {
     async addDictItem(row) {
       this.$refs.crud.rowAdd();
       await this.$nextTick();
-      this.formData.parentId = row._id;
-      this.formData.type = row.type;
+      setTimeout(() => {
+        this.formData.parentId = row._id;
+        this.formData.type = row.type;
+      });
     }
   }
 };

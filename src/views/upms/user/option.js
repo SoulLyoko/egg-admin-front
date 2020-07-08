@@ -66,10 +66,7 @@ export const tableOption = {
       prop: "status",
       type: "switch",
       value: "1",
-      dicData: [
-        { label: "禁用", value: "0" },
-        { label: "启用", value: "1" }
-      ]
+      dicUrl: "/dict/type/status"
     }
   ]
 };

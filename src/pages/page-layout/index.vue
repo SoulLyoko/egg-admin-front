@@ -21,7 +21,7 @@
       <el-main class="main">
         <mainTabs></mainTabs>
         <div class="main-view">
-          <keep-alive>
+          <keep-alive :include="keepAliveList">
             <router-view></router-view>
           </keep-alive>
         </div>
@@ -55,7 +55,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(["isCollapse"])
+    ...mapGetters(["isCollapse", "keepAliveList"])
   },
   methods: {
     changeCollapse() {

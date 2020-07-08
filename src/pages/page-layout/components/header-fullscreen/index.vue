@@ -1,7 +1,7 @@
 <template>
-  <div class="header-fullscreen">
+  <div class="header-fullscreen" @click="toggleFullscreen">
     <el-tooltip effect="dark" content="全屏" placement="bottom">
-      <i class="el-icon-full-screen" @click="toggleFullscreen"></i>
+      <i class="el-icon-full-screen"></i>
     </el-tooltip>
   </div>
 </template>

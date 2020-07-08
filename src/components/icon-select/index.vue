@@ -11,7 +11,7 @@
       :value="value"
       :size="size"
       :disabled="disabled"
-      :placeholder="placeholder"
+      :placeholder="placeholder || '选择图标'"
       style="width:200px"
       @input="$emit('input', $event)"
     >
@@ -30,7 +30,7 @@
           placeholder="输入关键字搜索"
           clearable
         ></el-input>
-        <el-scrollbar class="icon-list">
+        <el-row class="icon-list">
           <el-col
             :span="4"
             class="icon-item"
@@ -41,7 +41,7 @@
             <div class="icon-item__icon" :class="item.font_class"></div>
             <div class="icon-item__label">{{ item.name }}</div>
           </el-col>
-        </el-scrollbar>
+        </el-row>
       </el-tab-pane>
     </el-tabs>
   </el-popover>
@@ -103,6 +103,7 @@ export default {
   .icon-list {
     height: 500px;
     text-align: center;
+    overflow: auto;
     .icon-item {
       padding: 5px;
       cursor: pointer;
