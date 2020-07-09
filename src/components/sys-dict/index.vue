@@ -14,15 +14,8 @@ export default {
   name: "sys-dict",
   props: {
     code: { type: String }, //请求字典接口的字典名称
-    value: { type: String || Array }, //双向绑定的值
     type: { type: String, default: "select" }, //select下拉选择,selectInput下拉选择可输入,radio单选框,checkbox多选框,text文字
-    //type为select时生效
-    multiple: { type: Boolean, default: false }, //多选
-    clearable: { type: Boolean, default: false }, //是否显示清空按钮
-    //type为text时生效
     join: { type: String, default: "," },
-    // type 为 selectInput时生效
-    allowCreate: { type: Boolean, default: false },
     dictData: { type: Array, default: () => [] } // 自定义字典数据，当传入时，将不发code请求，字典格式：[{label:"",value:""}]
   },
   data() {
@@ -31,13 +24,23 @@ export default {
     };
   },
   render(h) {
-    return (
-      <dictSelect
-        {...{ attrs: this.$attrs }}
-        value={this.value}
-        options={this.options}
-      ></dictSelect>
-    );
+    const attrs = { attrs: this.$attrs };
+    const { type, handleChange } = this;
+    if (this.$slots.default) {
+      return this.$slots.default;
+    }
+    switch (type) {
+      case "select":
+        return <dictSelect {...attrs} onChange={handleChange}></dictSelect>;
+      case "radio":
+        return <dictRadio {...attrs} onChange={handleChange}></dictRadio>;
+      case "checkbox":
+        return <dictCheckbox {...attrs} onChange={handleChange}></dictCheckbox>;
+      case "text":
+        return <div>{this.selectedLabel}</div>;
+      default:
+        return <div></div>;
+    }
   },
   computed: {
     selectedLabel() {
@@ -52,17 +55,12 @@ export default {
           this.options.filter(item => item.value === this.value)[0] || {};
         return data.label || this.value;
       }
-    },
-    isSlot() {
-      return (
-        Object.keys(this.$slots).length !== 0 || !this.$scopedSlots.$stable
-      );
     }
   },
   watch: {
     code: {
       handler(val) {
-        if (!val) return;
+        if (!val || this.dictData) return;
         this.getDict();
       },
       immediate: true
@@ -77,11 +75,9 @@ export default {
   },
   methods: {
     handleChange(value) {
+      console.log("handleChange -> value", value);
       this.$emit("input", value);
       this.$emit("change", value);
-    },
-    handleClear() {
-      this.$emit("input", "");
     },
     getDict() {
       if (window.dictRequesting) {

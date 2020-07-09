@@ -1,10 +1,9 @@
 <template>
-  <el-checkbox-group v-bind="$attrs" v-on="$listeners">
+  <el-checkbox-group v-bind="$attrs" v-on="$listeners" v-model="model">
     <el-checkbox
       v-bind="$attrs"
-      v-on="$listeners"
       :label="item.value"
-      v-for="item in options"
+      v-for="item in $parent.options"
       :key="item.value"
       >{{ item.label }}</el-checkbox
     >
@@ -15,7 +14,17 @@
 export default {
   name: "dict-radio",
   data() {
-    return {};
+    return {
+      model: []
+    };
+  },
+  watch: {
+    $attrs: {
+      handler(val) {
+        this.model = val.value;
+      },
+      immediate: true
+    }
   }
 };
 </script>
