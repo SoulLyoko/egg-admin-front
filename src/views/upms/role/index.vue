@@ -24,10 +24,16 @@
           size="small"
           icon="el-icon-circle-plus-outline"
           @click="openMenu(row)"
-        >权限</el-button>
+          >权限</el-button
+        >
       </template>
     </avue-crud>
-    <el-dialog class="menu-dialog" title="菜单权限" :visible.sync="menuVisible" width="60%">
+    <el-dialog
+      class="menu-dialog"
+      title="菜单权限"
+      :visible.sync="menuVisible"
+      width="60%"
+    >
       <el-tree
         ref="menuTree"
         :data="menuTreeData"
@@ -35,12 +41,12 @@
         default-expand-all
         show-checkbox
         :check-strictly="true"
-        :props="{label:'title'}"
+        :props="{ label: 'title' }"
         @check="menuCheck"
       ></el-tree>
       <span slot="footer">
         <el-button type="primary" @click="saveMenu()">保存</el-button>
-        <el-button @click="menuVisible=false">取 消</el-button>
+        <el-button @click="menuVisible = false">取 消</el-button>
       </span>
     </el-dialog>
   </basic-container>

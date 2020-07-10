@@ -19,5 +19,4 @@ export default {
 };
 </script>
 
-<style lang="" scoped>
-</style>
+<style lang="" scoped></style>

@@ -2,10 +2,14 @@
   <el-submenu :index="menu.path">
     <template slot="title">
       <i class="menu-icon" :class="menu.icon"></i>
-      <span class="menu-title">{{menu.title}}</span>
+      <span class="menu-title">{{ menu.title }}</span>
     </template>
     <template v-for="item in menu.children">
-      <menuSub :menu="item" :key="item._id" v-if="item.children&&item.children.length"></menuSub>
+      <menuSub
+        :menu="item"
+        :key="item._id"
+        v-if="item.children && item.children.length"
+      ></menuSub>
       <menuItem :menu="item" :key="item._id" v-else></menuItem>
     </template>
   </el-submenu>
@@ -29,5 +33,4 @@ export default {
 };
 </script>
 
-<style lang="" scoped>
-</style>
+<style lang="" scoped></style>

@@ -19,10 +19,21 @@
       @row-del="rowDel"
     >
       <template #menuLeft>
-        <file-upload multiple v-model="uploadIds" :show-file-list="true" @change="fileListChange"></file-upload>
+        <file-upload
+          multiple
+          v-model="uploadIds"
+          :show-file-list="true"
+          @change="fileListChange"
+        ></file-upload>
       </template>
       <template #menu="{row,index}">
-        <el-button type="text" size="small" icon="el-icon-view" @click="preview(row, index)">预览</el-button>
+        <el-button
+          type="text"
+          size="small"
+          icon="el-icon-view"
+          @click="preview(row, index)"
+          >预览</el-button
+        >
       </template>
     </avue-crud>
   </basic-container>

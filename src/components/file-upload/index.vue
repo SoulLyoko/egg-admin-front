@@ -82,7 +82,7 @@ export default {
     handleError(err) {
       console.error(err);
       this.$message.error("上传失败");
-      this.$emit("error");
+      this.$emit("error", err);
     },
     handleExceed() {
       this.$message.warning("超出文件上传数量限制");

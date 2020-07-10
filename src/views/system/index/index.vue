@@ -6,11 +6,11 @@
     </p>
     <p>
       <b>版本信息</b>
-      <span>{{appVersion}}</span>
+      <span>{{ appVersion }}</span>
     </p>
-    <p v-for="(value,key) in sysInfo" :key="key">
-      <b>{{key}}</b>
-      <span>{{value}}</span>
+    <p v-for="(value, key) in sysInfo" :key="key">
+      <b>{{ key }}</b>
+      <span>{{ value }}</span>
     </p>
   </basic-container>
 </template>

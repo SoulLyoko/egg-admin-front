@@ -39,7 +39,8 @@
           icon="el-icon-plus"
           @click="addMenu(row)"
           v-if="permission.addSubBtn"
-        >新增下级</el-button>
+          >新增下级</el-button
+        >
       </template>
       <template #componentForm="{row}">
         <el-select
