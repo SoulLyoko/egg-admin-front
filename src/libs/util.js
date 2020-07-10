@@ -40,10 +40,10 @@ export function generateRoutes(menuArr, parent = { path: "" }) {
     let component =
       componentMap[menu.component] ||
       (() => import("@/views/" + menu.component));
-    const children =
-      menu.children && menu.children.length
-        ? generateRoutes(menu.children, menu)
-        : [];
+    let children = [];
+    if (menu.children?.length) {
+      children = generateRoutes(menu.children, menu);
+    }
     return {
       ...menu,
       path,

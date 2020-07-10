@@ -1,5 +1,5 @@
 <template>
-  <basic-container>
+  <basic-container type="full">
     <iframe
       :src="src"
       frameborder="0"

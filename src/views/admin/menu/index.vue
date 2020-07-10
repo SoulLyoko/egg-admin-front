@@ -86,7 +86,7 @@ export default {
         tableOption.column.forEach(item => {
           switch (item.prop) {
             case "query":
-              item.display = component && component.includes("/");
+              item.display = component?.includes("/");
               break;
             case "url":
             case "blank":
@@ -133,7 +133,9 @@ export default {
     async addMenu(row) {
       this.$refs.crud.rowAdd();
       await this.$nextTick();
-      this.formData.parentId = row._id;
+      setTimeout(() => {
+        this.formData.parentId = row._id;
+      });
     },
     async afterUpdate() {
       this.getMenu(true);

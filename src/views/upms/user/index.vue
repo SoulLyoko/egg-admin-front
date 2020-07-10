@@ -30,14 +30,11 @@
         }}</el-tag>
       </template>
       <template #roleIdsForm="{row}">
-        <el-select v-model="row.roleIds" multiple>
-          <el-option
-            v-for="item in roleList"
-            :key="item._id"
-            :label="item.name"
-            :value="item._id"
-          ></el-option>
-        </el-select>
+        <sys-dict
+          v-model="row.roleIds"
+          multiple
+          :dictData="roleList"
+        ></sys-dict>
       </template>
     </avue-crud>
   </basic-container>
@@ -66,7 +63,12 @@ export default {
   },
   created() {
     getRoleList().then(res => {
-      this.roleList = res.data;
+      this.roleList = res.data.map(item => {
+        return {
+          label: item.name,
+          value: item._id
+        };
+      });
     });
   }
 };

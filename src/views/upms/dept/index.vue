@@ -57,7 +57,9 @@ export default {
     async addDept(row) {
       this.$refs.crud.rowAdd();
       await this.$nextTick();
-      this.formData.parentId = row._id;
+      setTimeout(() => {
+        this.formData.parentId = row._id;
+      });
     }
   }
 };

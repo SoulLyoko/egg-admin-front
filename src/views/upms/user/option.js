@@ -33,9 +33,9 @@ export const tableOption = {
     {
       label: "部门",
       prop: "deptId",
-      type: "tree",
       slot: true,
-      formslot: true
+      formslot: true,
+      search: true
     },
     {
       label: "角色",

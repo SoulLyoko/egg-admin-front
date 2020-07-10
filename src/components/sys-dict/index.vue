@@ -59,9 +59,7 @@ export default {
             .join(this.join) || value
         );
       } else {
-        return (
-          (this.options.find(item => item.value === value) || {}).label || value
-        );
+        return this.options.find(item => item.value === value)?.label || value;
       }
     }
   },
@@ -92,7 +90,7 @@ export default {
         setTimeout(this.getDict);
       } else {
         let dict = window.dict;
-        if (dict && dict[this.code]) {
+        if (dict?.[this.code]) {
           this.options = dict[this.code];
         } else {
           this.requestDict();

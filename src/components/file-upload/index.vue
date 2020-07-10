@@ -71,7 +71,7 @@ export default {
       this.fileList = fileList.map(item => {
         return {
           ...item,
-          ...(item.response && item.response.data ? item.response.data : {})
+          ...(item.response?.data || {})
         };
       });
       const value = this.fileList.map(item => item._id).join(",");

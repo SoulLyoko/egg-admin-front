@@ -36,7 +36,7 @@ export default {
   },
   mutations: {
     SET_ASIDE_MENU(state, data) {
-      if (data && data.length) {
+      if (data?.length) {
         state.asideMenu = data;
       } else if (state.headerMenu.length) {
         state.asideMenu = state.headerMenu[0].children;

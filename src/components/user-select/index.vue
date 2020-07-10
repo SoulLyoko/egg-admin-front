@@ -64,7 +64,7 @@ export default {
     setOptions(list) {
       return list.map(item => {
         let children = [];
-        if (item.children && item.children.length) {
+        if (item.children?.length) {
           children = this.setOptions(item.children);
         }
         return {

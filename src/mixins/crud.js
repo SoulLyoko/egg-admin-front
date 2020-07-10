@@ -60,7 +60,7 @@ export default {
           this.page.total = 0;
         })
         .finally(async () => {
-          this.$refs.crud && this.$refs.crud.selectClear();
+          this.$refs.crud?.selectClear?.();
           this.tableLoading = false;
           this.afterGetList && (await this.afterGetList());
         });
@@ -80,10 +80,10 @@ export default {
         .then(res => {
           this.$message.success("保存成功");
           this.getDataList();
-          done && done();
+          done?.();
         })
         .catch(e => {
-          loading && loading();
+          loading?.();
         })
         .finally(async () => {
           this.afterSave && (await this.afterSave());
@@ -104,10 +104,10 @@ export default {
         .then(res => {
           this.$message.success("保存成功");
           this.getDataList();
-          done && done();
+          done?.();
         })
         .catch(e => {
-          loading && loading();
+          loading?.();
         })
         .finally(async () => {
           this.afterUpdate && (await this.afterUpdate());
@@ -138,13 +138,11 @@ export default {
      * @param {Object} form 搜索表单数据(不含自定义项)
      */
     searchChange(form, done) {
-      this.searchForm = Object.assign(
-        this.searchForm,
-        this.$refs.crud ? this.$refs.crud.searchForm : {},
-        form
-      );
+      const crudSearchForm =
+        this.$refs.crud?.$refs.headerSearch?.searchForm ?? {};
+      this.searchForm = Object.assign(this.searchForm, crudSearchForm, form);
       this.getDataList();
-      done && done();
+      done?.();
     },
     /**
      * @description 搜索重置

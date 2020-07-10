@@ -21,8 +21,8 @@
           <i class="el-icon-close"></i>关闭其他
         </el-dropdown-item>
         <el-dropdown-item command="closeAllTabs">
-          <i class="el-icon-error"></i>关闭全部</el-dropdown-item
-        >
+          <i class="el-icon-error"></i>关闭全部
+        </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
