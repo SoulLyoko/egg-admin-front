@@ -31,6 +31,8 @@ export default {
     border-top: none;
     border-radius: 4px;
     padding: 20px;
+    max-height: calc(100% - 41px);
+    overflow: auto;
   }
   &.full {
     height: calc(100% - 40px);

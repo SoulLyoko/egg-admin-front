@@ -1,6 +1,5 @@
 <template>
   <basic-container>
-    <sys-dict v-model="dict" code="status" size="small" type="radio"></sys-dict>
     <avue-crud
       ref="crud"
       v-model="formData"
@@ -62,8 +61,7 @@ export default {
         remove
       },
       tableOption,
-      roleList: [],
-      dict: "1"
+      roleList: []
     };
   },
   created() {

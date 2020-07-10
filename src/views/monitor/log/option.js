@@ -9,7 +9,9 @@ export const tableOption = {
     {
       label: "请求方式",
       prop: "method",
-      search: true
+      search: true,
+      type: "select",
+      dicUrl: "/dict/type/request_method"
     },
     {
       label: "请求地址",
