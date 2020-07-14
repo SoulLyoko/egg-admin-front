@@ -1,6 +1,7 @@
 import { getMenu, getPermissions } from "@/api/sys/menu.js";
 import { generateRoutes } from "@/libs/util.js";
 import router from "@/router/index.js";
+import { errorRoutes } from "@/router/routes.js";
 
 export default {
   state: {
@@ -24,6 +25,7 @@ export default {
       await getMenu().then(res => {
         const routes = generateRoutes(res);
         router.addRoutes(routes);
+        router.addRoutes(errorRoutes);
         commit("SET_HEADER_MENU", routes);
         if (!state.asideMenu.length) {
           commit("SET_ASIDE_MENU", routes[0].children);

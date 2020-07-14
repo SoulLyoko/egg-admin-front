@@ -24,6 +24,21 @@ export const frameOut = [
       title: "登录"
     },
     component: () => import("@/views/system/login")
+  },
+  {
+    path: "/404",
+    name: "404",
+    meta: {
+      title: "找不到页面"
+    },
+    component: () => import("@/views/system/error/404")
+  }
+];
+
+export const errorRoutes = [
+  {
+    path: "*",
+    redirect: "/404"
   }
 ];
 

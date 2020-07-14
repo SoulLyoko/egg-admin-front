@@ -73,8 +73,8 @@ export default {
     return {
       searchKey: "",
       tabs: [
-        { label: "阿里云", name: "iconfont" },
-        { label: "饿了么", name: "elicon" }
+        { label: "Iconfont", name: "iconfont" },
+        { label: "Element", name: "elicon" }
       ],
       activeTab: "iconfont"
     };

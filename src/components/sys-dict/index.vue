@@ -81,7 +81,6 @@ export default {
   },
   methods: {
     handleChange(value) {
-      console.log("handleChange -> value", value);
       this.$emit("input", value);
       this.$emit("change", value);
     },
