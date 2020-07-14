@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import menuMixin from "@/mixins/menu.js";
+
 export default {
   name: "menu-item",
   props: {
@@ -14,21 +16,9 @@ export default {
       default: () => {}
     }
   },
+  mixins: [menuMixin],
   data() {
     return {};
-  },
-  methods: {
-    menuItemClick(menu) {
-      if (menu.parentId === "0") {
-        this.$store.commit("SET_ASIDE_MENU", menu.children);
-      } else if (menu.component.name === "page-iframe" && menu.meta.blank) {
-        window.open(menu.meta.url, "_blank");
-      } else {
-        this.$router.push({
-          path: menu.path + (menu.query || "")
-        });
-      }
-    }
   }
 };
 </script>

@@ -13,6 +13,7 @@
         ></i>
         <headerMenu></headerMenu>
         <div class="header-right">
+          <headerSearch></headerSearch>
           <headerTheme></headerTheme>
           <headerFullsceen></headerFullsceen>
           <headerUser></headerUser>
@@ -34,6 +35,7 @@
 import asideLogo from "./components/aside-logo";
 import asideMenu from "./components/aside-menu";
 import headerMenu from "./components/header-menu";
+import headerSearch from "./components/header-search";
 import headerTheme from "./components/header-theme";
 import headerFullsceen from "./components/header-fullscreen";
 import headerUser from "./components/header-user";
@@ -46,6 +48,7 @@ export default {
     asideLogo,
     asideMenu,
     headerMenu,
+    headerSearch,
     headerTheme,
     headerFullsceen,
     headerUser,
