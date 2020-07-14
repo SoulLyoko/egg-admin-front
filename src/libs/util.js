@@ -39,7 +39,9 @@ export function generateRoutes(menuArr, parent = { path: "" }) {
   return menuArr.map(menu => {
     menu.path = parent.path + menu.path;
     let path = menu.path;
-    let component = componentMap[menu.component] || (() => import("@/views/" + menu.component));
+    let component =
+      componentMap[menu.component] ||
+      (() => import("@/views/" + menu.component));
     let children = [];
     if (menu.children?.length) {
       children = generateRoutes(menu.children, menu);

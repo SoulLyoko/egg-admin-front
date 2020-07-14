@@ -5,12 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title><%= VUE_APP_TITLE %></title>
     <!-- 阿里字体库 -->
-    <link
-      rel="stylesheet"
-      href="//at.alicdn.com/t/font_1920768_hgp5yphpj59.css"
-    />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1920768_hgp5yphpj59.css" />
     <style>
       [class*="eicon-"] {
         font-family: "iconfont" !important;
@@ -19,17 +16,45 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
+      html,
+      body,
+      #app {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+      .page-loading {
+        height: 100%;
+        background-color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .page-loading .loading {
+        height: 32px;
+        width: 32px;
+        margin-bottom: 20px;
+      }
+      .page-loading .text {
+        color: #fff;
+      }
     </style>
   </head>
   <body>
     <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
+      <strong>
+        We're sorry but <%= VUE_APP_TITLE %> doesn't work properly without JavaScript enabled. Please
+        enable it to continue.
+      </strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <div class="page-loading">
+        <img class="loading" src="<%= BASE_URL %>img/loading.svg" alt="loading" />
+        <span class="text">正在加载中...</span>
+      </div>
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>

@@ -138,7 +138,8 @@ export default {
      * @param {Object} form 搜索表单数据(不含自定义项)
      */
     searchChange(form, done) {
-      const crudSearchForm = this.$refs.crud?.$refs.headerSearch?.searchForm ?? {};
+      const crudSearchForm =
+        this.$refs.crud?.$refs.headerSearch?.searchForm ?? {};
       this.searchForm = Object.assign(this.searchForm, crudSearchForm, form);
       this.getDataList();
       done?.();
@@ -223,7 +224,10 @@ export default {
     filterObj(row) {
       let temp = {};
       for (const key in row) {
-        if ([undefined, null].every(val => row[key] !== val) && !key.includes("$")) {
+        if (
+          [undefined, null].every(val => row[key] !== val) &&
+          !key.includes("$")
+        ) {
           temp[key] = row[key];
         }
       }
