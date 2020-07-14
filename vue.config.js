@@ -1,4 +1,4 @@
-const publicPath = process.env.VUE_APP_PUBLIC_PATH || "/";
+const publicPath = process.env.VUE_APP_BASE_URL || "/";
 
 module.exports = {
   publicPath,
