@@ -57,7 +57,7 @@
       .header-right {
         [class*="header-"] {
           &:hover {
-            background-color: $header-right-item-bgc;
+            background-color: $header-right-item-bgc-hover;
           }
         }
       }

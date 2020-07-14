@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import routes from "./routes";
 import { frameOut } from "./routes";
 import store from "../store";
-import cookie from "js-cookie";
+import { cookie } from "@/libs/util.js";
 import NProgress from "nprogress";
 Vue.use(VueRouter);
 
@@ -52,7 +52,11 @@ router.afterEach(to => {
   // 多页控制 打开新的页面
   store.dispatch("openTab", to);
   // 更改标题
-  document.title = `${process.env.VUE_APP_TITLE} - ${to.meta.title}`;
+  if (process.env.VUE_APP_TITLE && to.meta.title) {
+    document.title = `${process.env.VUE_APP_TITLE} - ${to.meta.title}`;
+  } else {
+    document.title = process.env.VUE_APP_TITLE || "";
+  }
 });
 
 export default router;

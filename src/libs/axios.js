@@ -1,5 +1,5 @@
 import axios from "axios";
-import cookie from "js-cookie";
+import { cookie } from "@/libs/util.js";
 import { Message } from "element-ui";
 import qs from "qs";
 import store from "@/store/index.js";

@@ -1,6 +1,6 @@
 {
-  "name": "egg-admin-front",
-  "version": "0.1.0",
+  "name": "egg-admin",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
