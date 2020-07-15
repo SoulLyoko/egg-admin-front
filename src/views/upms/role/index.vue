@@ -1,39 +1,16 @@
 <template>
   <basic-container>
-    <avue-crud
-      ref="crud"
-      v-model="formData"
-      :page="page"
-      :table-loading="tableLoading"
-      :option="tableOption"
-      :data="tableData"
-      @current-change="pageCurrentChange"
-      @size-change="pageSizeChange"
-      @search-change="searchChange"
-      @search-reset="searchReset"
-      @refresh-change="getDataList"
-      @selection-change="selectionChange"
-      @sort-change="sortChange"
-      @row-save="handleSave"
-      @row-update="handleUpdate"
-      @row-del="rowDel"
-    >
+    <avue-crud v-bind="bindVal" v-on="onEvent">
       <template #menu="{row}">
         <el-button
           type="text"
           size="small"
           icon="el-icon-circle-plus-outline"
           @click="openMenu(row)"
-          >权限</el-button
-        >
+        >权限</el-button>
       </template>
     </avue-crud>
-    <el-dialog
-      class="menu-dialog"
-      title="菜单权限"
-      :visible.sync="menuVisible"
-      width="60%"
-    >
+    <el-dialog class="menu-dialog" title="菜单权限" :visible.sync="menuVisible" width="60%">
       <el-tree
         ref="menuTree"
         :data="menuTreeData"
@@ -94,7 +71,7 @@ export default {
     async saveMenu() {
       const { _id, menuIds } = this.formData;
       await this.handleUpdate({ _id, menuIds });
-      this.getMenu(true);
+      this.getMenu();
       this.menuVisible = false;
     }
   }

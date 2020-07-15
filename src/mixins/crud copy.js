@@ -1,73 +1,30 @@
-/**
- * @description crudMixin 用于avue-crud的混入
- * @hooks 钩子函数，xxxxx前的钩子函数可以是Promise:
- * beforeGetList获取数据前,afterGetList获取数据后,
- * beforeSave新增数据前,afterSave新增数据后,
- * beforeUpdate更新数据前,afterUpdate更新数据后,
- * beforeDel删除数据前,afterDel删除数据后,
- * beforeBatchDel批量删除前,afterBatchDel批量删除后,
- * beforeSearchReset搜索重置前,afterSearchReset搜索重置后
- */
 export default {
   data() {
     return {
       // 设置属性
       crudOption: {
-        rowKey: "_id", // 行键值(id/_id/uuid/...)
+        rowKey: "_id", // 删除使用的key(id/_id/uuid/...)
         created: true, // 此页面是否在激活（进入）时，查询数据列表?
         getList: null, // 获取数据列表方法
         create: null, // 添加数据方法
         update: null, // 编辑数据方法
-        remove: null, // 删除单条数据方法
-        dataPath: "res.data", // 接口返回数据的路径
-        totalPath: "res.total" // 接口返回总数的路径
+        remove: null // 删除单条数据方法
       },
-      // 分页
-      page: {
+      // 默认属性
+      pageDefault: {
         total: 0, // 总条数
         currentPage: 1, // 当前页数
         pageSize: 10 // 每页显示多少条
       },
-      // 排序
-      sort: {
-        order: "descending", // desc降序，asc升序
-        prop: "createTime" // 排序字段
-      },
-      tableLoading: false, // 数据列表，loading状态
-      tableOption: {}, // 表格配置
-      tableData: [], // 数据列表
-      dataSelections: [], // 数据列表，多选项
+      page: null,
+      sortDefault: { order: "descending", prop: "createTime" }, // 排序
+      sort: null,
       searchForm: {}, // 查询条件
-      formData: {} // 表单数据
+      tableData: [], // 数据列表
+      formData: {},
+      tableLoading: false, // 数据列表，loading状态
+      dataSelections: [] // 数据列表，多选项
     };
-  },
-  computed: {
-    bindVal() {
-      return {
-        ref: "crud",
-        value: this.formData,
-        tableLoading: this.tableLoading,
-        option: this.tableOption,
-        data: this.tableData,
-        page: this.page,
-        search: this.searchForm
-      };
-    },
-    onEvent() {
-      return {
-        "row-save": this.handleSave,
-        "row-update": this.handleUpdate,
-        "row-del": this.handleDel,
-        "refresh-change": this.getDataList,
-        "selection-change": this.selectionChange,
-        "current-change": this.pageCurrentChange,
-        "size-change": this.pageSizeChange,
-        "sort-change": this.sortChange,
-        "search-change": this.searchChange,
-        "search-reset": this.searchReset,
-        input: form => (this.formData = form)
-      };
-    }
   },
   created() {
     if (this.crudOption.created) {
@@ -79,8 +36,14 @@ export default {
      * @description 获取数据列表
      */
     async getDataList() {
-      await this.beforeGetList?.();
+      this.beforeGetList && (await this.beforeGetList());
       this.tableLoading = true;
+      if (!this.page) {
+        this.page = this.pageDefault || {};
+      }
+      if (!this.sort) {
+        this.sort = this.sortDefault || {};
+      }
       return this.crudOption
         .getList({
           ...this.page,
@@ -89,17 +52,17 @@ export default {
         })
         .then(res => {
           console.log("getDataList -> res", res);
-          this.tableData = eval(this.crudOption.dataPath) || [];
-          this.page.total = eval(this.crudOption.totalPath) || 0;
-          this.afterGetList?.();
+          this.tableData = res.data || [];
+          this.page.total = res.total || 0;
         })
-        .catch(() => {
+        .catch(e => {
           this.tableData = [];
           this.page.total = 0;
         })
-        .finally(() => {
+        .finally(async () => {
           this.$refs.crud?.selectClear?.();
           this.tableLoading = false;
+          this.afterGetList && (await this.afterGetList());
         });
     },
     /**
@@ -109,19 +72,21 @@ export default {
      * @param {Function} loading 为表单停止loading函数
      **/
     async handleSave(row, done, loading) {
-      await this.beforeSave?.();
+      this.beforeSave && (await this.beforeSave());
       let obj = this.filterObj(row);
       delete obj[this.crudOption.rowKey];
       return this.crudOption
         .create(obj)
-        .then(() => {
+        .then(res => {
           this.$message.success("保存成功");
           this.getDataList();
           done?.();
-          this.afterSave?.();
         })
-        .catch(() => {
+        .catch(e => {
           loading?.();
+        })
+        .finally(async () => {
+          this.afterSave && (await this.afterSave());
         });
     },
     /**
@@ -132,44 +97,73 @@ export default {
      * @param {Function} loading 为表单停止loading函数
      **/
     async handleUpdate(row, index, done, loading) {
-      await this.beforeUpdate?.();
+      this.beforeUpdate && (await this.beforeUpdate());
       let obj = this.filterObj(row);
       return this.crudOption
         .update(obj[this.crudOption.rowKey], obj)
-        .then(() => {
+        .then(res => {
           this.$message.success("保存成功");
           this.getDataList();
           done?.();
-          this.afterUpdate?.();
         })
-        .catch(() => {
+        .catch(e => {
           loading?.();
+        })
+        .finally(async () => {
+          this.afterUpdate && (await this.afterUpdate());
         });
     },
     /**
      * @description 删除行
      * @param {Object} row 行数据
      */
-    async handleDel(row) {
-      await this.beforeDel?.();
+    async rowDel(row) {
+      this.beforeRowDel && (await this.beforeRowDel());
       return this.$confirm("确认进行删除操作？", "提示", {
         type: "warning"
       })
         .then(() => {
           return this.crudOption.remove(row[this.crudOption.rowKey]);
         })
-        .then(() => {
+        .then(res => {
           this.$message.success("删除成功");
           this.getDataList();
-          this.afterDel?.();
         })
-        .catch(() => {});
+        .finally(async () => {
+          this.afterRowDel && (await this.afterRowDel());
+        });
+    },
+    /**
+     * @description 搜索
+     * @param {Object} form 搜索表单数据(不含自定义项)
+     */
+    searchChange(form, done) {
+      const crudSearchForm =
+        this.$refs.crud?.$refs.headerSearch?.searchForm ?? {};
+      this.searchForm = Object.assign(this.searchForm, crudSearchForm, form);
+      this.getDataList();
+      done?.();
+    },
+    /**
+     * @description 搜索重置
+     */
+    searchReset() {
+      this.searchForm = {};
+      this.page = this.pageDefault;
+      this.getDataList();
+    },
+    /**
+     * @description 多选
+     * @param {Array} row 选中行数据
+     */
+    selectionChange(row) {
+      this.dataSelections = row;
     },
     /**
      * @description 批量删除
      */
     async batchDel() {
-      await this.beforeBatchDel?.();
+      this.beforeBatchDel && (await this.beforeBatchDel());
       const length = this.dataSelections.length;
       if (!length) {
         return this.$message.warning("请选择删除项");
@@ -184,37 +178,13 @@ export default {
             .join(",");
           return this.crudOption.remove(ids);
         })
-        .then(() => {
+        .then(res => {
           this.$message.success("删除成功");
           this.getDataList();
-          this.afterBatchDel?.();
         })
-        .catch(() => {});
-    },
-    /**
-     * @description 搜索
-     * @param {Object} form 搜索表单数据
-     */
-    async searchChange(form, done) {
-      this.searchForm = form;
-      this.page.currentPage = 1;
-      this.getDataList();
-      done?.();
-    },
-    /**
-     * @description 搜索重置
-     */
-    async searchReset(form, done) {
-      await this.beforeSearchReset?.();
-      this.searchChange(form, done);
-      this.afterSearchReset?.();
-    },
-    /**
-     * @description 多选
-     * @param {Array} row 选中行数据
-     */
-    selectionChange(row) {
-      this.dataSelections = row;
+        .finally(async () => {
+          this.afterBatchDel && (await this.afterBatchDel());
+        });
     },
     /**
      * @description 分页, 每页条数
@@ -234,12 +204,15 @@ export default {
     },
     /**
      * @description 排序
+     * @param {Object} column 列数据
      * @param {String} order 排序顺序
      * @param {String} prop 排序字段
      */
-    sortChange({ order, prop }) {
+    sortChange({ column, order, prop }) {
       if (order && prop) {
         this.sort = { order, prop };
+      } else {
+        this.sort = this.sortDefault;
       }
       this.getDataList();
     },

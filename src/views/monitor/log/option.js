@@ -73,8 +73,9 @@ export const tableOption = {
     {
       label: "日志时间",
       prop: "createTime",
-      type: "datetimerange",
-      search: true
+      type: "date",
+      search: true,
+      searchRange: true
     }
   ]
 };

@@ -9,6 +9,7 @@ module.exports = {
   },
   rules: {
     "no-unused-vars": 1,
+    "vue/no-unused-vars": 1,
     "vue/no-unused-components": 1
   }
 };

@@ -2,10 +2,12 @@ export const tableOption = {
   rowKey: "_id",
   align: "center",
   index: true,
+  searchMenuSpan: 6,
   column: [
     {
       label: "参数名",
-      prop: "name"
+      prop: "name",
+      search: true
     },
     {
       label: "参数值",

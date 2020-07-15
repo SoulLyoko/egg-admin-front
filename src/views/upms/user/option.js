@@ -35,7 +35,8 @@ export const tableOption = {
       prop: "deptId",
       slot: true,
       formslot: true,
-      search: true
+      search: true,
+      searchslot: true
     },
     {
       label: "角色",

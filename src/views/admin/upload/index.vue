@@ -1,39 +1,14 @@
 <template>
   <basic-container>
-    <avue-crud
-      ref="crud"
-      v-model="formData"
-      :page="page"
-      :table-loading="tableLoading"
-      :option="tableOption"
-      :data="tableData"
-      @current-change="pageCurrentChange"
-      @size-change="pageSizeChange"
-      @search-change="searchChange"
-      @search-reset="searchReset"
-      @refresh-change="getDataList"
-      @selection-change="selectionChange"
-      @sort-change="sortChange"
-      @row-save="handleSave"
-      @row-update="handleUpdate"
-      @row-del="rowDel"
-    >
+    <avue-crud v-bind="bindVal" v-on="onEvent">
       <template #menuLeft>
-        <file-upload
-          multiple
-          v-model="uploadIds"
-          :show-file-list="true"
-          @change="fileListChange"
-        ></file-upload>
+        <file-upload multiple v-model="uploadIds" :show-file-list="true" @change="fileListChange"></file-upload>
+      </template>
+      <template #menuRight>
+        <el-button type="danger" size="small" @click="batchDel">批量删除</el-button>
       </template>
       <template #menu="{row,index}">
-        <el-button
-          type="text"
-          size="small"
-          icon="el-icon-view"
-          @click="preview(row, index)"
-          >预览</el-button
-        >
+        <el-button type="text" size="small" icon="el-icon-view" @click="preview(row, index)">预览</el-button>
       </template>
     </avue-crud>
   </basic-container>

@@ -4,10 +4,11 @@ export const tableOption = {
   index: true,
   addBtn: false,
   editBtn: false,
+  selection: true,
   column: [
     {
       label: "文件名称",
-      prop: "filename"
+      prop: "filename",
     },
     {
       label: "文件扩展名",

@@ -1,23 +1,6 @@
 <template>
   <basic-container>
-    <avue-crud
-      ref="crud"
-      v-model="formData"
-      :page="page"
-      :table-loading="tableLoading"
-      :option="tableOption"
-      :data="tableData"
-      @current-change="pageCurrentChange"
-      @size-change="pageSizeChange"
-      @search-change="searchChange"
-      @search-reset="searchReset"
-      @refresh-change="getDataList"
-      @selection-change="selectionChange"
-      @sort-change="sortChange"
-      @row-save="handleSave"
-      @row-update="handleUpdate"
-      @row-del="rowDel"
-    ></avue-crud>
+    <avue-crud v-bind="bindVal" v-on="onEvent"></avue-crud>
   </basic-container>
 </template>
 

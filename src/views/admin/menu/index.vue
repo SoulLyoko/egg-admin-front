@@ -1,23 +1,6 @@
 <template>
   <basic-container>
-    <avue-crud
-      ref="crud"
-      v-model="formData"
-      :page="page"
-      :table-loading="tableLoading"
-      :option="tableOption"
-      :data="tableData"
-      @current-change="pageCurrentChange"
-      @size-change="pageSizeChange"
-      @search-change="searchChange"
-      @search-reset="searchReset"
-      @refresh-change="getDataList"
-      @selection-change="selectionChange"
-      @sort-change="sortChange"
-      @row-save="handleSave"
-      @row-update="handleUpdate"
-      @row-del="rowDel"
-    >
+    <avue-crud v-bind="bindVal" v-on="onEvent">
       <template #parentIdForm="{row}">
         <avue-input-tree
           v-model="row.parentId"
@@ -39,21 +22,17 @@
           icon="el-icon-plus"
           @click="addMenu(row)"
           v-if="permission.addSubBtn"
-          >新增下级</el-button
-        >
+        >新增下级</el-button>
       </template>
       <template #componentForm="{row}">
-        <el-select
+        <sys-dict
           v-model="row.component"
+          placeholder="请选择或输入前端组件"
           filterable
           allow-create
           default-first-option
-          placeholder="请选择或输入前端组件"
-        >
-          <el-option label="Layout" value="Layout"></el-option>
-          <el-option label="Main" value="Main"></el-option>
-          <el-option label="Iframe" value="Iframe"></el-option>
-        </el-select>
+          :dictData="componentOptions"
+        ></sys-dict>
       </template>
     </avue-crud>
   </basic-container>
@@ -76,7 +55,10 @@ export default {
         update,
         remove
       },
-      tableOption
+      tableOption,
+      componentOptions: ["Layout", "Main", "Iframe"].map(item => {
+        return { label: item, value: item };
+      })
     };
   },
   watch: {
@@ -138,7 +120,7 @@ export default {
       });
     },
     async afterUpdate() {
-      this.getMenu(true);
+      this.getMenu();
     }
   }
 };

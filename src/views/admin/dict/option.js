@@ -2,10 +2,12 @@ export const tableOption = {
   rowKey: "_id",
   align: "center",
   index: true,
+  searchMenuSpan: 6,
   column: [
     {
       label: "字典类型",
       prop: "type",
+      search: true,
       span: 24,
       rules: [
         {
