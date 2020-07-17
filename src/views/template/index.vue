@@ -10,7 +10,7 @@ import { tableOption } from "./option";
 import { getList, create, update, remove } from "@/api/sys/param";
 
 export default {
-  name: "sys-template",
+  name: "crud-template",
   mixins: [crudMixin],
   data() {
     return {
