@@ -25,6 +25,6 @@ export default {
     Vue.prototype.$day = dayjs;
 
     Vue.use(ElementUI);
-    Vue.use(Avue);
+    Vue.use(Avue, { menuType: "button", size: "small" });
   }
 };

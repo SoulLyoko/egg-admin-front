@@ -5,7 +5,7 @@
         <dept-select v-model="row.parentId" :topLevel="true"></dept-select>
       </template>
       <template #menu="{row}">
-        <el-button type="text" size="small" icon="el-icon-plus" @click="addDept(row)">新增下级</el-button>
+        <el-button type="default" size="small" icon="el-icon-plus" @click="addDept(row)">新增下级</el-button>
       </template>
     </avue-crud>
   </basic-container>

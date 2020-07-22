@@ -1,12 +1,12 @@
 /**
  * @description crudMixin 用于avue-crud的混入
- * @hooks 钩子函数，xxxxx前的钩子函数可以是Promise:
+ * @hooks 钩子函数，xxxx前的钩子函数可以是Promise:
  * beforeGetList获取数据前,afterGetList获取数据后,
  * beforeSave新增数据前,afterSave新增数据后,
  * beforeUpdate更新数据前,afterUpdate更新数据后,
  * beforeDel删除数据前,afterDel删除数据后,
  * beforeBatchDel批量删除前,afterBatchDel批量删除后,
- * beforeSearchReset搜索重置前,afterSearchReset搜索重置后
+ * beforeSearch(isReset)搜索前(是否重置),afterSearch(isReset)搜索后(是否重置)
  */
 export default {
   data() {
@@ -14,7 +14,7 @@ export default {
       // 设置属性
       crudOption: {
         rowKey: "_id", // 行键值(id/_id/uuid/...)
-        created: true, // 此页面是否在激活（进入）时，查询数据列表?
+        created: true, // 此页面是否在进入时，查询数据列表?
         getList: null, // 获取数据列表方法
         create: null, // 添加数据方法
         update: null, // 编辑数据方法
@@ -33,10 +33,10 @@ export default {
         order: "descending", // desc降序，asc升序
         prop: "createTime" // 排序字段
       },
-      tableLoading: false, // 数据列表，loading状态
-      tableOption: {}, // 表格配置
+      tableLoading: false, // 数据加载状态
+      tableOption: {}, // 表格配置项
       tableData: [], // 数据列表
-      dataSelections: [], // 数据列表，多选项
+      dataSelections: [], // 已选择数据列表
       searchForm: {}, // 查询条件
       formData: {} // 表单数据
     };
@@ -195,19 +195,19 @@ export default {
      * @description 搜索
      * @param {Object} form 搜索表单数据
      */
-    async searchChange(form, done) {
+    async searchChange(form, done, isReset = false) {
       this.searchForm = form;
       this.page.currentPage = 1;
+      await this.beforeSearch?.(isReset);
       this.getDataList();
       done?.();
+      this.afterSearch?.(isReset);
     },
     /**
      * @description 搜索重置
      */
-    async searchReset(form, done) {
-      await this.beforeSearchReset?.();
-      this.searchChange(form, done);
-      this.afterSearchReset?.();
+    searchReset(form, done) {
+      this.searchChange(form, done, true);
     },
     /**
      * @description 多选

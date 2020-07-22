@@ -1,10 +1,6 @@
 <template>
-  <basic-container type="full">
-    <iframe
-      :src="src"
-      frameborder="0"
-      style="height: 99%;width: 100%;background-color:#fff;"
-    ></iframe>
+  <basic-container type="ghost">
+    <iframe :src="src" frameborder="0" height="99.5%" width="100%" style="background-color:#fff;"></iframe>
   </basic-container>
 </template>
 

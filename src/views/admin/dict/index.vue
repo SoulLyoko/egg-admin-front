@@ -3,7 +3,7 @@
     <avue-crud v-bind="bindVal" v-on="onEvent">
       <template #menu="{row}">
         <el-button
-          type="text"
+          type="default"
           size="small"
           icon="el-icon-plus"
           @click="addDictItem(row)"

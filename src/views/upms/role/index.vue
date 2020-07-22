@@ -3,11 +3,11 @@
     <avue-crud v-bind="bindVal" v-on="onEvent">
       <template #menu="{row}">
         <el-button
-          type="text"
+          type="default"
           size="small"
           icon="el-icon-circle-plus-outline"
           @click="openMenu(row)"
-        >权限</el-button>
+        >菜单权限</el-button>
       </template>
     </avue-crud>
     <el-dialog class="menu-dialog" title="菜单权限" :visible.sync="menuVisible" width="60%">

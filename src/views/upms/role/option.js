@@ -2,13 +2,14 @@ export const tableOption = {
   rowKey: "_id",
   align: "center",
   index: true,
+  menuWidth: 300,
   column: [
     {
-      label: "名称",
+      label: "角色名称",
       prop: "name"
     },
     {
-      label: "标识",
+      label: "角色标识",
       prop: "code"
     },
     {

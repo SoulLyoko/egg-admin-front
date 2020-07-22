@@ -1,6 +1,10 @@
 <template>
   <basic-container>
-    <avue-crud v-bind="bindVal" v-on="onEvent"></avue-crud>
+    <avue-crud v-bind="bindVal" v-on="onEvent">
+      <template #menuLeft>
+        <el-button type="danger" size="small" icon="el-icon-delete" @click="batchDel">批量删除</el-button>
+      </template>
+    </avue-crud>
   </basic-container>
 </template>
 

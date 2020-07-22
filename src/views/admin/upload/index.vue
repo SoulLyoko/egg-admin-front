@@ -2,13 +2,13 @@
   <basic-container>
     <avue-crud v-bind="bindVal" v-on="onEvent">
       <template #menuLeft>
-        <file-upload multiple v-model="uploadIds" :show-file-list="true" @change="fileListChange"></file-upload>
+        <file-upload multiple v-model="uploadIds" :show-file-list="false" @change="fileListChange"></file-upload>
       </template>
       <template #menuRight>
-        <el-button type="danger" size="small" @click="batchDel">批量删除</el-button>
+        <el-button type="danger" size="small" icon="el-icon-delete" @click="batchDel">批量删除</el-button>
       </template>
       <template #menu="{row,index}">
-        <el-button type="text" size="small" icon="el-icon-view" @click="preview(row, index)">预览</el-button>
+        <el-button type="default" size="small" icon="el-icon-view" @click="preview(row, index)">预览</el-button>
       </template>
     </avue-crud>
   </basic-container>

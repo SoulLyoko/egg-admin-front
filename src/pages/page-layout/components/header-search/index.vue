@@ -1,12 +1,7 @@
 <template>
   <div class="header-search">
     <transition name="fade" mode="out-in">
-      <el-tooltip
-        effect="dark"
-        content="搜索"
-        placement="bottom"
-        v-if="!inputVisible"
-      >
+      <el-tooltip effect="dark" content="搜索" placement="bottom" v-if="!inputVisible">
         <i class="el-icon-search" @click="showInput"></i>
       </el-tooltip>
       <el-autocomplete
@@ -19,11 +14,7 @@
         v-if="inputVisible"
         style="width:150px;"
       >
-        <i
-          class="el-icon-close el-input__icon"
-          slot="suffix"
-          @click="closeInput()"
-        ></i>
+        <i class="el-icon-close el-input__icon" slot="suffix" @click="closeInput()"></i>
         <template #default="{item}">
           <div>
             <i :class="item.icon"></i>

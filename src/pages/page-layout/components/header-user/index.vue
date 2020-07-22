@@ -7,7 +7,7 @@
           <i class="el-icon-lock"></i>修改密码
         </el-dropdown-item>
         <el-dropdown-item @click.native="handleLogout">
-          <i class="el-icon-switch-button"></i>退出登陆
+          <i class="el-icon-switch-button"></i>退出登录
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>

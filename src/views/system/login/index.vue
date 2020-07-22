@@ -22,7 +22,11 @@
           ></el-input>
         </el-form-item>
         <el-form-item prop="captcha">
-          <el-input v-model="form.captcha" placeholder="验证码">
+          <el-input
+            v-model="form.captcha"
+            prefix-icon="el-icon-picture-outline-round"
+            placeholder="验证码"
+          >
             <template slot="append">
               <div class="login-captcha" v-html="captcha" @click="refreshCaptcha"></div>
             </template>

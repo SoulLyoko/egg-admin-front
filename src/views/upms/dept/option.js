@@ -2,6 +2,7 @@ export const tableOption = {
   rowKey: "_id",
   align: "center",
   index: true,
+  menuWidth: 300,
   column: [
     {
       label: "上级部门",

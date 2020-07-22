@@ -17,7 +17,7 @@
       </template>
       <template #menu="{row}">
         <el-button
-          type="text"
+          type="default"
           size="small"
           icon="el-icon-plus"
           @click="addMenu(row)"

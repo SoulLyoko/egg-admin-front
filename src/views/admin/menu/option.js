@@ -2,6 +2,7 @@ export const tableOption = {
   rowKey: "_id",
   align: "center",
   index: true,
+  menuWidth: 300,
   column: [
     {
       label: "上级菜单",
@@ -75,7 +76,7 @@ export const tableOption = {
       span: 24
     },
     {
-      label: "组件名",
+      label: "路由名称",
       prop: "name",
       span: 24
     },

@@ -904,10 +904,10 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@smallwei/avue@^2.6.10":
-  version "2.6.10"
-  resolved "https://registry.npm.taobao.org/@smallwei/avue/download/@smallwei/avue-2.6.10.tgz#5b7f5ac43072836150d26d2939c78c47c7f04492"
-  integrity sha1-W39axDByg2FQ0m0pOceMR8fwRJI=
+"@smallwei/avue@^2.6.13":
+  version "2.6.13"
+  resolved "https://registry.npm.taobao.org/@smallwei/avue/download/@smallwei/avue-2.6.13.tgz#2477caa25620850769cb6707fddd3d47804861ff"
+  integrity sha1-JHfKolYghQdpy2cH/d09R4BIYf8=
   dependencies:
     async-validator "^1.10.0"
     axios "^0.18.0"

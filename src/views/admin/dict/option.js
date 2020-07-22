@@ -3,6 +3,7 @@ export const tableOption = {
   align: "center",
   index: true,
   searchMenuSpan: 6,
+  menuWidth: 320,
   column: [
     {
       label: "字典类型",
