@@ -1,10 +1,5 @@
 <template>
-  <el-popover
-    popper-class="icon-select"
-    placement="right"
-    width="600"
-    trigger="click"
-  >
+  <el-popover popper-class="icon-select" placement="right" width="600" trigger="click">
     <el-input
       class="icon-select-input"
       slot="reference"
@@ -18,18 +13,8 @@
       <i class="el-input__icon" :class="value" slot="suffix"></i>
     </el-input>
     <el-tabs v-model="activeTab" type="card">
-      <el-tab-pane
-        :label="tab.label"
-        :name="tab.name"
-        v-for="(tab, index) in tabs"
-        :key="index"
-      >
-        <el-input
-          class="icon-list-input"
-          v-model="searchKey"
-          placeholder="输入关键字搜索"
-          clearable
-        ></el-input>
+      <el-tab-pane :label="tab.label" :name="tab.name" v-for="(tab, index) in tabs" :key="index">
+        <el-input class="icon-list-input" v-model="searchKey" placeholder="输入关键字搜索" clearable></el-input>
         <el-row class="icon-list">
           <el-col
             :span="4"
@@ -82,10 +67,7 @@ export default {
   computed: {
     iconList() {
       return iconList[this.activeTab].filter(item => {
-        return (
-          item.name.includes(this.searchKey) ||
-          item.font_class.includes(this.searchKey)
-        );
+        return item.name.includes(this.searchKey) || item.font_class.includes(this.searchKey);
       });
     }
   },

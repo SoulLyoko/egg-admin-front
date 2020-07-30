@@ -14,31 +14,17 @@
           <el-input v-model="form.username" prefix-icon="el-icon-user" placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input
-            v-model="form.password"
-            type="password"
-            prefix-icon="el-icon-lock"
-            placeholder="密码"
-          ></el-input>
+          <el-input v-model="form.password" type="password" prefix-icon="el-icon-lock" placeholder="密码"></el-input>
         </el-form-item>
         <el-form-item prop="captcha">
-          <el-input
-            v-model="form.captcha"
-            prefix-icon="el-icon-picture-outline-round"
-            placeholder="验证码"
-          >
+          <el-input v-model="form.captcha" prefix-icon="el-icon-picture-outline-round" placeholder="验证码">
             <template slot="append">
               <div class="login-captcha" v-html="captcha" @click="refreshCaptcha"></div>
             </template>
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button
-            class="login-button"
-            type="primary"
-            native-type="submit"
-            @click="handleLogin"
-          >登录</el-button>
+          <el-button class="login-button" type="primary" native-type="submit" @click="handleLogin">登录</el-button>
         </el-form-item>
       </el-form>
     </div>

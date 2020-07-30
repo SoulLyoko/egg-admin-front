@@ -16,13 +16,9 @@
         <icon-select v-model="row.icon"></icon-select>
       </template>
       <template #menu="{row}">
-        <el-button
-          type="default"
-          size="small"
-          icon="el-icon-plus"
-          @click="addMenu(row)"
-          v-if="permission.addSubBtn"
-        >新增下级</el-button>
+        <el-button type="default" size="small" icon="el-icon-plus" @click="addMenu(row)" v-if="permission.addSubBtn">
+          新增下级
+        </el-button>
       </template>
       <template #componentForm="{row}">
         <sys-dict

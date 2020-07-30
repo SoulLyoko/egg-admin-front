@@ -23,7 +23,7 @@ export default {
       options: []
     };
   },
-  render(h) {
+  render() {
     const attrs = { attrs: this.$attrs };
     if (this.$scopedSlots.default) {
       return this.$scopedSlots.default({
@@ -33,15 +33,11 @@ export default {
     }
     switch (this.type) {
       case "select":
-        return (
-          <dictSelect {...attrs} onChange={this.handleChange}></dictSelect>
-        );
+        return <dictSelect {...attrs} onChange={this.handleChange}></dictSelect>;
       case "radio":
         return <dictRadio {...attrs} onChange={this.handleChange}></dictRadio>;
       case "checkbox":
-        return (
-          <dictCheckbox {...attrs} onChange={this.handleChange}></dictCheckbox>
-        );
+        return <dictCheckbox {...attrs} onChange={this.handleChange}></dictCheckbox>;
       case "text":
         return <div>{this.selectedLabel}</div>;
       default:

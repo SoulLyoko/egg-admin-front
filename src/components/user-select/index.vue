@@ -4,12 +4,7 @@
     v-model="model"
     filterable
     :options="options"
-    :props="{
-      multiple: multiple,
-      emitPath: false,
-      label: 'username',
-      value: '_id'
-    }"
+    :props="{ multiple: multiple, emitPath: false, label: 'username', value: '_id' }"
     :show-all-levels="false"
     :placeholder="placeholder || '选择用户，输入名字搜索'"
     :size="size || 'small'"

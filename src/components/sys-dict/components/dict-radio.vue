@@ -1,12 +1,8 @@
 <template>
   <el-radio-group v-bind="$attrs" v-on="$listeners" v-model="model">
-    <el-radio
-      v-bind="$attrs"
-      :label="item.value"
-      v-for="item in $parent.options"
-      :key="item.value"
-      >{{ item.label }}</el-radio
-    >
+    <el-radio v-bind="$attrs" :label="item.value" v-for="item in $parent.options" :key="item.value">
+      {{ item.label }}
+    </el-radio>
   </el-radio-group>
 </template>
 

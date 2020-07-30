@@ -33,8 +33,7 @@ export const tableOption = {
     },
     {
       label: "请求参数",
-      prop: "params",
-      overHidden: true
+      prop: "params"
     },
     {
       label: "操作用户",
@@ -43,8 +42,7 @@ export const tableOption = {
     },
     {
       label: "用户标识",
-      prop: "userAgent",
-      overHidden: true
+      prop: "userAgent"
     },
     {
       label: "状态",
@@ -67,8 +65,7 @@ export const tableOption = {
     // },
     {
       label: "错误信息",
-      prop: "error",
-      overHidden: true
+      prop: "error"
     },
     {
       label: "日志时间",
@@ -77,5 +74,10 @@ export const tableOption = {
       search: true,
       searchRange: true
     }
-  ]
+  ].map(item => {
+    return {
+      ...item,
+      overHidden: true
+    };
+  })
 };

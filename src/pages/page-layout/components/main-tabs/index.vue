@@ -1,11 +1,6 @@
 <template>
   <div class="main-tabs">
-    <el-tabs
-      :value="activeTab.path"
-      type="card"
-      @tab-click="tabClick"
-      @tab-remove="tabRemove"
-    >
+    <el-tabs :value="activeTab.path" type="card" @tab-click="tabClick" @tab-remove="tabRemove">
       <el-tab-pane
         v-for="tab in openTabs"
         :key="tab.path"
@@ -17,12 +12,8 @@
     <el-dropdown @command="handleCommand">
       <el-button class="main-tabs-menu" icon="el-icon-arrow-down"></el-button>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="closeOtherTabs">
-          <i class="el-icon-close"></i>关闭其他
-        </el-dropdown-item>
-        <el-dropdown-item command="closeAllTabs">
-          <i class="el-icon-error"></i>关闭全部
-        </el-dropdown-item>
+        <el-dropdown-item command="closeOtherTabs"> <i class="el-icon-close"></i>关闭其他 </el-dropdown-item>
+        <el-dropdown-item command="closeAllTabs"> <i class="el-icon-error"></i>关闭全部 </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>

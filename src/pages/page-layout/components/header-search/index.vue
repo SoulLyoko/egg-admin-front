@@ -82,10 +82,7 @@ export default {
       let results = this.routeList;
       if (queryString) {
         results = this.routeList.filter(item => {
-          return (
-            item.meta.title.includes(queryString) ||
-            item.path.includes(queryString)
-          );
+          return item.meta.title.includes(queryString) || item.path.includes(queryString);
         });
       }
       this.closeInput(true);

@@ -194,6 +194,8 @@ export default {
     /**
      * @description 搜索
      * @param {Object} form 搜索表单数据
+     * @param {Functoin} done 表单完成函数
+     * @param {Boolean} isReset 是否是搜索重置
      */
     async searchChange(form, done, isReset = false) {
       this.searchForm = form;
@@ -251,10 +253,7 @@ export default {
     filterObj(row) {
       let temp = {};
       for (const key in row) {
-        if (
-          [undefined, null].every(val => row[key] !== val) &&
-          !key.includes("$")
-        ) {
+        if ([undefined, null].every(val => row[key] !== val) && !key.includes("$")) {
           temp[key] = row[key];
         }
       }

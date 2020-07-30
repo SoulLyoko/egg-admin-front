@@ -12,9 +12,7 @@
       </template>
       <template #roleIds="{row}">
         <el-tag v-for="item in row.roles" :key="item._id">
-          {{
-          item.name
-          }}
+          {{ item.name }}
         </el-tag>
       </template>
       <template #roleIdsForm="{row}">

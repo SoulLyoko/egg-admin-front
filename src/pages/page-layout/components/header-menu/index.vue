@@ -1,11 +1,7 @@
 <template>
   <div class="header-menu">
     <el-menu mode="horizontal" :default-active="activeHeader">
-      <menuItem
-        :menu="menu"
-        v-for="menu in headerMenu"
-        :key="menu._id"
-      ></menuItem>
+      <menuItem :menu="menu" v-for="menu in headerMenu" :key="menu._id"></menuItem>
     </el-menu>
   </div>
 </template>

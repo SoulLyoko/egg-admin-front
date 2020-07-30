@@ -11,16 +11,13 @@ export default {
   getters: {
     activeTab: state => state.activeTab,
     openTabs: state => state.openTabs,
-    keepAliveList: state =>
-      state.openTabs.filter(item => item.meta.cache).map(item => item.name)
+    keepAliveList: state => state.openTabs.filter(item => item.meta.cache).map(item => item.name)
   },
   actions: {
     openTab({ commit, state, getters }, to) {
       const hasTab = state.openTabs.some(item => item.path === to.path);
       const isFrameOut = frameOut.some(item => item.path === to.path);
-      const currentHeader = getters.headerMenu.find(
-        menu => menu.path === to.matched[0].path
-      );
+      const currentHeader = getters.headerMenu.find(menu => menu.path === to.matched[0].path);
       if (!hasTab && !isFrameOut) {
         commit("SET_TABS", [...state.openTabs, { ...to, matched: undefined }]);
       }
@@ -32,8 +29,7 @@ export default {
     },
     closeTab({ commit, state }, tabName) {
       if (tabName === state.activeTab.path) {
-        const prevIndex =
-          (state.openTabs.findIndex(tab => tab.path === tabName) || 1) - 1;
+        const prevIndex = (state.openTabs.findIndex(tab => tab.path === tabName) || 1) - 1;
         router.push(state.openTabs[prevIndex]);
       }
       const filterTabs = state.openTabs.filter(tab => tab.path !== tabName);
@@ -44,9 +40,7 @@ export default {
       router.push("/index");
     },
     closeOtherTabs({ commit, state }) {
-      const filterTabs = state.openTabs.filter(
-        item => item.path === state.activeTab.path
-      );
+      const filterTabs = state.openTabs.filter(item => item.path === state.activeTab.path);
       commit("SET_TABS", filterTabs);
     }
   },

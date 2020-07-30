@@ -8,7 +8,7 @@ export const tableOption = {
   column: [
     {
       label: "文件名称",
-      prop: "filename",
+      prop: "filename"
     },
     {
       label: "文件扩展名",

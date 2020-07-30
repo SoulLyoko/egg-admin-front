@@ -5,11 +5,7 @@
       <span class="menu-title">{{ menu.title }}</span>
     </template>
     <template v-for="item in menu.children">
-      <menuSub
-        :menu="item"
-        :key="item._id"
-        v-if="item.children && item.children.length"
-      ></menuSub>
+      <menuSub :menu="item" :key="item._id" v-if="item.children && item.children.length"></menuSub>
       <menuItem :menu="item" :key="item._id" v-else></menuItem>
     </template>
   </el-submenu>

@@ -8,7 +8,9 @@
           icon="el-icon-plus"
           @click="addDictItem(row)"
           v-if="row.parentId === '0'"
-        >新增字典项</el-button>
+        >
+          新增字典项
+        </el-button>
       </template>
     </avue-crud>
   </basic-container>

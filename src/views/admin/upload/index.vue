@@ -33,7 +33,7 @@ export default {
     };
   },
   methods: {
-    fileListChange(fileList) {
+    fileListChange() {
       this.getDataList();
     },
     preview(row, index) {
