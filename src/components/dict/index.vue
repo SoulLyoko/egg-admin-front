@@ -1,17 +1,19 @@
 <script>
 /**
- * 字典组件 支持el-select,el-radio,el-checkbox的所有属性
+ * 字典组件 支持el-select,el-radio,el-checkbox,el-cascader的所有属性
+ * el-cascader中，props的emitPath已被强制设置成false
  * @description 先在字典表中添加字典和数据,该组件已注册为全局组件,无需重复引用
  * eg:<sys-dict v-model="form.status" code="status"></sys-dict>
- * 使用 window.dict[code] 可获取到当前字典项
+ * 使用 window.Dict[code] 可获取到当前字典项
  */
 import { getDictType } from "@/api/sys/dict.js";
 import dictSelect from "./components/dict-select";
 import dictRadio from "./components/dict-radio";
 import dictCheckbox from "./components/dict-checkbox";
+import dictCascader from "./components/dict-cascader.vue";
 
 export default {
-  name: "sys-dict",
+  name: "dict",
   props: {
     code: { type: String }, //请求字典接口的字典名称
     type: { type: String, default: "select" }, //select下拉选择,radio单选框,checkbox多选框,text文字
@@ -38,10 +40,12 @@ export default {
         return <dictRadio {...attrs} onChange={this.handleChange}></dictRadio>;
       case "checkbox":
         return <dictCheckbox {...attrs} onChange={this.handleChange}></dictCheckbox>;
+      case "cascader":
+        return <dictCascader {...attrs} onChange={this.handleChange}></dictCascader>;
       case "text":
-        return <div>{this.selectedLabel}</div>;
+        return <span>{this.selectedLabel}</span>;
       default:
-        return <div>{this.$attrs.value}</div>;
+        return <span>{this.$attrs.value}</span>;
     }
   },
   computed: {
@@ -49,13 +53,13 @@ export default {
       const { value } = this.$attrs;
       if (value instanceof Array) {
         return (
-          this.options
+          this.flatOptions()
             .filter(item => value.some(val => val === item.value))
             .map(item => item.label)
             .join(this.join) || value
         );
       } else {
-        return this.options.find(item => item.value === value)?.label || value;
+        return this.flatOptions().find(item => item.value === value)?.label || value;
       }
     }
   },
@@ -81,7 +85,7 @@ export default {
       this.$emit("change", value);
     },
     getDict() {
-      if (window.dictRequesting) {
+      if (window.DictRequesting) {
         setTimeout(this.getDict);
       } else {
         let dict = window.dict;
@@ -94,17 +98,12 @@ export default {
     },
     //请求字典并存在window中
     requestDict() {
-      window.dictRequesting = true;
+      window.DictRequesting = true;
       getDictType(this.code)
         .then(res => {
-          this.options = res.data.map(item => {
-            return {
-              label: item.label,
-              value: item.value
-            };
-          });
-          let dict = window.dict || {};
-          window.dict = {
+          this.options = res.data;
+          let dict = window.Dict || {};
+          window.Dict = {
             ...dict,
             [this.code]: [...this.options]
           };
@@ -113,8 +112,19 @@ export default {
           console.error(err);
         })
         .finally(() => {
-          window.dictRequesting = false;
+          window.DictRequesting = false;
         });
+    },
+    flatOptions(arr = this.options) {
+      return arr
+        .map(item => {
+          if (item.children && item.children.length) {
+            return [item, this.flatOptions(item.children)];
+          } else {
+            return item;
+          }
+        })
+        .flat(Infinity);
     }
   }
 };

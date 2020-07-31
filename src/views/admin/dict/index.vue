@@ -2,14 +2,8 @@
   <basic-container>
     <avue-crud v-bind="bindVal" v-on="onEvent">
       <template #menu="{row}">
-        <el-button
-          type="default"
-          size="small"
-          icon="el-icon-plus"
-          @click="addDictItem(row)"
-          v-if="row.parentId === '0'"
-        >
-          新增字典项
+        <el-button type="default" size="small" icon="el-icon-plus" @click="addDictItem(row)">
+          新增子项
         </el-button>
       </template>
     </avue-crud>
