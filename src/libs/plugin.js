@@ -16,13 +16,13 @@ import * as util from "@/libs/util";
 import dayjs from "dayjs";
 
 export default {
-  async install(Vue, options) {
+  async install(Vue) {
     // 设置为 false 以阻止 vue 在启动时生成生产提示
     // https://cn.vuejs.org/v2/api/#productionTip
     Vue.config.productionTip = false;
     // util
     Vue.prototype.$util = util;
-    Vue.prototype.$day = dayjs;
+    Vue.prototype.$dayjs = dayjs;
 
     Vue.use(ElementUI);
     Vue.use(Avue, { menuType: "button", size: "small" });

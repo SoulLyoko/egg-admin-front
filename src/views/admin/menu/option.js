@@ -11,25 +11,13 @@ export const tableOption = {
       hide: true,
       formslot: true,
       span: 24,
-      rules: [
-        {
-          required: true,
-          message: "请选择上级菜单",
-          trigger: "change"
-        }
-      ]
+      rules: [{ required: true, message: "请选择上级菜单" }]
     },
     {
       label: "菜单名称",
       prop: "title",
       span: 24,
-      rules: [
-        {
-          required: true,
-          message: "请输入菜单名称",
-          trigger: "change"
-        }
-      ]
+      rules: [{ required: true, message: "请输入菜单名称" }]
     },
     {
       label: "类型",
@@ -41,13 +29,7 @@ export const tableOption = {
       ],
       span: 24,
       value: "0",
-      rules: [
-        {
-          required: true,
-          message: "请选择类型",
-          trigger: "change"
-        }
-      ]
+      rules: [{ required: true, message: "请选择类型" }]
     },
     {
       label: "图标",
@@ -63,6 +45,11 @@ export const tableOption = {
       span: 24
     },
     {
+      label: "路由名称",
+      prop: "name",
+      span: 24
+    },
+    {
       label: "前端组件",
       prop: "component",
       formslot: true,
@@ -73,11 +60,6 @@ export const tableOption = {
       prop: "query",
       display: false,
       hide: true,
-      span: 24
-    },
-    {
-      label: "路由名称",
-      prop: "name",
       span: 24
     },
     {

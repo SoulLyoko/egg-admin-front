@@ -3,7 +3,7 @@
  * 字典组件 支持el-select,el-radio,el-checkbox,el-cascader的所有属性
  * el-cascader中，props的emitPath已被强制设置成false
  * @description 先在字典表中添加字典和数据,该组件已注册为全局组件,无需重复引用
- * eg:<sys-dict v-model="form.status" code="status"></sys-dict>
+ * eg:<dict v-model="form.status" code="status"></dict>
  * 使用 window.Dict[code] 可获取到当前字典项
  */
 import { getDictType } from "@/api/sys/dict.js";

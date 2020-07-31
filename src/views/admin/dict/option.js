@@ -10,13 +10,7 @@ export const tableOption = {
       prop: "type",
       search: true,
       span: 24,
-      rules: [
-        {
-          required: true,
-          message: "请输入字典类型",
-          trigger: "change"
-        }
-      ]
+      rules: [{ required: true, message: "请输入字典类型" }]
     },
     {
       label: "父节点ID",
@@ -29,25 +23,13 @@ export const tableOption = {
       label: "字典名称",
       prop: "label",
       span: 24,
-      rules: [
-        {
-          required: true,
-          message: "请输入字典名称",
-          trigger: "change"
-        }
-      ]
+      rules: [{ required: true, message: "请输入字典名称" }]
     },
     {
       label: "数据值",
       prop: "value",
       span: 24,
-      rules: [
-        {
-          required: true,
-          message: "请输入数据值",
-          trigger: "change"
-        }
-      ]
+      rules: [{ required: true, message: "请输入数据值" }]
     },
     {
       label: "备注",

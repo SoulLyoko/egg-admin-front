@@ -1,10 +1,22 @@
 <template>
   <basic-container>
-    <avue-crud v-bind="bindVal" v-on="onEvent">
-      <template #menu="{row}">
+    <avue-crud v-bind="bindVal" v-on="onEvent" :before-open="beforeOpen">
+      <!-- <template #menu="{row}">
         <el-button type="default" size="small" icon="el-icon-circle-plus-outline" @click="openMenu(row)">
           菜单权限
         </el-button>
+      </template> -->
+      <template #menuIdsForm="{}">
+        <el-tree
+          ref="menuTree"
+          :data="menuTreeData"
+          node-key="_id"
+          default-expand-all
+          show-checkbox
+          :check-strictly="true"
+          :props="{ label: 'title' }"
+          @check="menuCheck"
+        ></el-tree>
       </template>
     </avue-crud>
     <el-dialog class="menu-dialog" title="菜单权限" :visible.sync="menuVisible" width="60%">
@@ -14,7 +26,6 @@
         node-key="_id"
         default-expand-all
         show-checkbox
-        :check-strictly="true"
         :props="{ label: 'title' }"
         @check="menuCheck"
       ></el-tree>
@@ -56,20 +67,21 @@ export default {
   },
   methods: {
     ...mapActions(["getMenu"]),
-    async openMenu(row) {
-      this.menuVisible = true;
-      await this.$nextTick();
-      this.formData = Object.assign({}, row);
-      this.$refs.menuTree.setCheckedKeys(row.menuIds);
+    async beforeOpen(done, type) {
+      done();
+      if (type === "edit") {
+        await this.$nextTick();
+        this.$refs.menuTree.setCheckedKeys(this.formData.menuIds);
+      }
     },
     menuCheck(VNode, { checkedKeys, halfCheckedKeys }) {
       this.formData.menuIds = [...checkedKeys, ...halfCheckedKeys];
     },
-    async saveMenu() {
-      const { _id, menuIds } = this.formData;
-      await this.handleUpdate({ _id, menuIds });
+    afterSave() {
       this.getMenu();
-      this.menuVisible = false;
+    },
+    afterUpdate() {
+      this.getMenu();
     }
   }
 };

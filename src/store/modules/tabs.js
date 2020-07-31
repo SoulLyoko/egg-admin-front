@@ -39,8 +39,24 @@ export default {
       commit("SET_TABS", []);
       router.push("/index");
     },
-    closeOtherTabs({ commit, state }) {
-      const filterTabs = state.openTabs.filter(item => item.path === state.activeTab.path);
+    closeOtherTabs({ commit, state }, path) {
+      path = path || state.activeTab.path;
+      router.push(path);
+      const filterTabs = state.openTabs.filter(item => item.path === path);
+      commit("SET_TABS", filterTabs);
+    },
+    closeLeftTabs({ commit, state }, path) {
+      path = path || state.activeTab.path;
+      router.push(path);
+      const findIndex = state.openTabs.findIndex(item => item.path === path);
+      const filterTabs = state.openTabs.filter((item, index) => index >= findIndex);
+      commit("SET_TABS", filterTabs);
+    },
+    closeRightTabs({ commit, state }, path) {
+      path = path || state.activeTab.path;
+      router.push(path);
+      const findIndex = state.openTabs.findIndex(item => item.path === path);
+      const filterTabs = state.openTabs.filter((item, index) => index <= findIndex);
       commit("SET_TABS", filterTabs);
     }
   },

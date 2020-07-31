@@ -21,14 +21,14 @@
         </el-button>
       </template>
       <template #componentForm="{row}">
-        <sys-dict
+        <dict
           v-model="row.component"
           placeholder="请选择或输入前端组件"
           filterable
           allow-create
           default-first-option
           :dictData="componentOptions"
-        ></sys-dict>
+        ></dict>
       </template>
     </avue-crud>
   </basic-container>

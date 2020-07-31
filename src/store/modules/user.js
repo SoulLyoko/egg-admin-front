@@ -13,7 +13,7 @@ export default {
     login({ commit }, data = {}) {
       return userLogin(data).then(res => {
         cookie.set("token", res.token);
-        commit("SET_USER_INFO", res.info);
+        commit("SET_USER_INFO", res.userInfo);
       });
     },
     logout({ commit }) {

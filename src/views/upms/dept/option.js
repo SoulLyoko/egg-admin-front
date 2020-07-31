@@ -11,18 +11,13 @@ export const tableOption = {
       hide: true,
       formslot: true,
       span: 24,
-      rules: [
-        {
-          required: true,
-          message: "请选择上级部门",
-          trigger: "change"
-        }
-      ]
+      rules: [{ required: true, message: "请选择上级部门" }]
     },
     {
       label: "部门名称",
       prop: "name",
-      span: 24
+      span: 24,
+      rules: [{ required: true, message: "请输入部门名称" }]
     },
     {
       label: "排序",
