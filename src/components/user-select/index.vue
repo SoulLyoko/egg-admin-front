@@ -12,7 +12,7 @@
     :clearable="clearable"
     @change="handleChange"
   >
-    <template #default="{node,data}">
+    <template #default="{data}">
       <span>
         <i :class="data.username ? 'el-icon-user' : 'el-icon-share'"></i>
         {{ data.username || data.name }}
@@ -23,9 +23,14 @@
 
 <script>
 /**
- * @description 选择用户组件
- * @attrs value:双向绑定的值;size:组件大小;multiple:是否多选;disabled:是否禁用;clearable:是否可清空;placeholder:占位符;
- * @events change:选择的数据变化时触发,回调参数为已选择节点的[data]，即用户信息;
+ * @component 选择用户组件
+ * @prop {String} value 双向绑定的值
+ * @prop {String} size 组件大小
+ * @prop {String}  placeholder 占位符
+ * @prop {Boolean} multiple 是否多选
+ * @prop {Boolean} disabled 是否禁用
+ * @prop {Boolean} clearable 是否可清空
+ * @event change([data]) 选择的数据变化时触发,回调参数为已选择节点的[data],即用户信息
  */
 import { getUserTree } from "@/api/sys/dept.js";
 

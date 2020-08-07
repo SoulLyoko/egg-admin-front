@@ -27,25 +27,25 @@
 
 <script>
 /**
- * 文件上传组件
- * @props value:已上传的id(多个,分割);accept:接受上传的文件类型;disabled:是否禁用;drag:是否启用拖拽上传;limit:最大允许上传个数;
- *        listType:文件列表的类型;multiple:是否支持多选文件;showFileList:是否显示已上传文件列表;
- * @events success(res,file,fileList),成功回调;error,失败回调;remove(file, fileList),删除文件回调;change(fileList),文件列表变化时回调;
+ * @component 文件上传组件
+ * @prop {String} value 已上传的id(多个,分割)
+ * @prop {String} accept 接受上传的文件类型
+ * @prop {String} listType 文件列表的类型
+ * @prop {Number} limit 最大允许上传个数
+ * @prop {Boolean} multiple 是否支持多选文件
+ * @prop {Boolean} disabled 是否禁用
+ * @prop {Boolean} drag 是否启用拖拽上传
+ * @prop {Boolean} showFileList 是否显示已上传文件列表
+ * @event success(res,file,fileList) 成功回调
+ * @event error(err) 失败回调
+ * @event remove(file,fileList) 删除文件回调
+ * @event change(fileList) 文件列表变化时回调
  */
 import { getList, remove } from "@/api/sys/upload";
 
 export default {
   name: "file-upload",
-  props: {
-    value: { type: String, default: "" },
-    accept: String,
-    disabled: Boolean,
-    drag: Boolean,
-    limit: Number,
-    listType: String,
-    multiple: Boolean,
-    showFileList: Boolean
-  },
+  props: ["value", "accept", "listType", "limit", "multiple", "disabled", "drag", "showFileList"],
   data() {
     return {
       action: "/api/upload",

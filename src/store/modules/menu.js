@@ -5,12 +5,12 @@ import { errorRoutes } from "@/router/routes.js";
 
 export default {
   state: {
-    asideMenu: [],
-    headerMenu: [],
-    activeMenu: {},
-    isCollapse: false,
-    perms: [],
-    perm: {}
+    asideMenu: [], //左侧菜单
+    headerMenu: [], //顶部菜单
+    activeMenu: {}, //当前激活的菜单
+    isCollapse: false, //是否折叠左侧菜单
+    perms: [], //权限数组
+    perm: {} //权限对象
   },
   getters: {
     asideMenu: state => state.asideMenu,
@@ -21,6 +21,7 @@ export default {
     perm: state => state.perm
   },
   actions: {
+    /** 获取菜单并添加到路由，获取权限数据 */
     async getMenu({ commit, state }) {
       await getMenu().then(res => {
         const routes = generateRoutes(res);

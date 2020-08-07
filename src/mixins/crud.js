@@ -1,12 +1,17 @@
 /**
- * @description crudMixin 用于avue-crud的混入
- * @hooks 钩子函数，xxxx前的钩子函数可以是Promise:
- * beforeGetList获取数据前,afterGetList获取数据后,
- * beforeSave新增数据前,afterSave新增数据后,
- * beforeUpdate更新数据前,afterUpdate更新数据后,
- * beforeDel删除数据前,afterDel删除数据后,
- * beforeBatchDel批量删除前,afterBatchDel批量删除后,
- * beforeSearch(isReset)搜索前(是否重置),afterSearch(isReset)搜索后(是否重置)
+ * @mixin crudMixin 用于avue-crud的混入
+ * @hook beforeGetList 获取数据前
+ * @hook afterGetList 获取数据后
+ * @hook beforeSave 新增数据前
+ * @hook afterSave 新增数据后
+ * @hook beforeUpdate 更新数据前
+ * @hook afterUpdate 更新数据后
+ * @hook beforeDel 删除数据前
+ * @hook afterDel 删除数据后
+ * @hook beforeBatchDel 批量删除前
+ * @hook afterBatchDel 批量删除后
+ * @hook beforeSearch(isReset) 搜索前(是否重置)
+ * @hook afterSearch(isReset) 搜索后(是否重置)
  */
 export default {
   data() {
@@ -76,7 +81,7 @@ export default {
   },
   methods: {
     /**
-     * @description 获取数据列表
+     * @method 获取数据列表
      */
     async getDataList() {
       await this.beforeGetList?.();
@@ -103,11 +108,11 @@ export default {
         });
     },
     /**
-     * @description 数据添加
+     * @method 数据添加
      * @param {Object} row 为当前的数据
      * @param {Function} done 为表单关闭函数
      * @param {Function} loading 为表单停止loading函数
-     **/
+     */
     async handleSave(row, done, loading) {
       await this.beforeSave?.();
       let obj = this.filterObj(row);
@@ -125,12 +130,12 @@ export default {
         });
     },
     /**
-     * @description 数据更新
+     * @method 数据更新
      * @param {Object} row 为当前的数据
      * @param {Number} index 为当前更新数据的行数
      * @param {Function} done 为表单关闭函数
      * @param {Function} loading 为表单停止loading函数
-     **/
+     */
     async handleUpdate(row, index, done, loading) {
       await this.beforeUpdate?.();
       let obj = this.filterObj(row);
@@ -147,7 +152,7 @@ export default {
         });
     },
     /**
-     * @description 删除行
+     * @method 删除行
      * @param {Object} row 行数据
      */
     async handleDel(row) {
@@ -166,7 +171,7 @@ export default {
         .catch(() => {});
     },
     /**
-     * @description 批量删除
+     * @method 批量删除
      */
     async batchDel() {
       await this.beforeBatchDel?.();
@@ -192,7 +197,7 @@ export default {
         .catch(() => {});
     },
     /**
-     * @description 搜索
+     * @method 搜索
      * @param {Object} form 搜索表单数据
      * @param {Functoin} done 表单完成函数
      * @param {Boolean} isReset 是否是搜索重置
@@ -206,20 +211,20 @@ export default {
       this.afterSearch?.(isReset);
     },
     /**
-     * @description 搜索重置
+     * @method 搜索重置
      */
     searchReset(form, done) {
       this.searchChange(form, done, true);
     },
     /**
-     * @description 多选
+     * @method 多选
      * @param {Array} row 选中行数据
      */
     selectionChange(row) {
       this.dataSelections = row;
     },
     /**
-     * @description 分页, 每页条数
+     * @method 分页, 每页条数
      * @param {Number} size 每页条数
      */
     pageSizeChange(size) {
@@ -227,7 +232,7 @@ export default {
       this.getDataList();
     },
     /**
-     * @description 分页, 当前页
+     * @method 分页, 当前页
      * @param {Number} current 当前页
      */
     pageCurrentChange(current) {
@@ -235,7 +240,7 @@ export default {
       this.getDataList();
     },
     /**
-     * @description 排序
+     * @method 排序
      * @param {String} order 排序顺序
      * @param {String} prop 排序字段
      */
@@ -246,7 +251,7 @@ export default {
       this.getDataList();
     },
     /**
-     * @description 过滤对象空值
+     * @method 过滤对象空值
      * @param {Object} row 被过滤对象
      * @param {Array} value 过滤的值
      */

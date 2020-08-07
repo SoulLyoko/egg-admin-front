@@ -5,6 +5,12 @@ import jscookie from "js-cookie";
 import packageJson from "@/../package.json";
 const appPrefix = `${packageJson.name}-${packageJson.version}`;
 
+/**
+ * 浏览器本地缓存封装
+ * @method get(key) 设置数据
+ * @method get(key) 获取数据
+ * @method remove(key) 删除数据
+ */
 export const storage = {
   set(key, value) {
     localStorage.setItem(`${appPrefix}-${key}`, JSON.stringify(value));
@@ -18,6 +24,12 @@ export const storage = {
   }
 };
 
+/**
+ * 浏览器cookie封装
+ * @method get(key) 设置数据
+ * @method get(key) 获取数据
+ * @method remove(key) 删除数据
+ */
 export const cookie = {
   set(key, value, config) {
     jscookie.set(`${appPrefix}-${key}`, value, { expires: 1, ...config });
@@ -30,6 +42,12 @@ export const cookie = {
   }
 };
 
+/**
+ * @function 生成vue-router使用的路由格式
+ * @param {Array} menuArr 从后端获取的源数据
+ * @param {Object} parent  上级
+ * @returns {Array} 生成的路由数据
+ */
 export function generateRoutes(menuArr, parent = { path: "" }) {
   const componentMap = {
     Layout: pageLayout,

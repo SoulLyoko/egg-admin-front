@@ -6,8 +6,8 @@
 
 <script>
 /**
- * 基础容器
- * @props type:容器模式,card卡片,full高度填满主区域,ghost透明背景
+ * @component 基础容器
+ * @prop {String} type 容器模式:card卡片,full高度填满主区域,ghost透明背景
  */
 export default {
   name: "basic-container",

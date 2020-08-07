@@ -1,10 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import NProgress from "nprogress";
 import routes from "./routes";
 import { frameOut } from "./routes";
 import store from "../store";
 import { cookie } from "@/libs/util.js";
-import NProgress from "nprogress";
 Vue.use(VueRouter);
 
 // 解决跳转相同路由报错问题
@@ -20,8 +20,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  // 进度条
-  NProgress.start();
+  NProgress.start(); // 进度条启动
   const isLogin = cookie.get("token"); // 是否已登录
   const isFrameOut = frameOut.some(item => item.path === to.path); // 是否框架外页面
   const hasMenu = store.state.menu.headerMenu.length; // 是否已获取菜单
@@ -47,15 +46,14 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.afterEach(to => {
-  // 进度条
-  NProgress.done();
-  // 多页控制 打开新的页面
-  store.dispatch("openTab", to);
-  // 更改标题
-  if (process.env.VUE_APP_TITLE && to.meta.title) {
-    document.title = `${process.env.VUE_APP_TITLE} - ${to.meta.title}`;
+  NProgress.done(); // 进度条停止
+  store.dispatch("openTab", to); // 多页控制 打开新的页面
+  // 设置标题
+  const { VUE_APP_TITLE } = process.env;
+  if (VUE_APP_TITLE && to.meta.title) {
+    document.title = `${VUE_APP_TITLE} - ${to.meta.title}`;
   } else {
-    document.title = process.env.VUE_APP_TITLE || "";
+    document.title = VUE_APP_TITLE || "";
   }
 });
 

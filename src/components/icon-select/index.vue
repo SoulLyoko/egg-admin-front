@@ -34,8 +34,11 @@
 
 <script>
 /**
- * @description 选择图标组件
- * @attrs value:双向绑定的值(图标的class);size:组件大小;disabled:是否禁用;placeholder:占位符;
+ * @component 选择图标组件
+ * @prop {String} value 双向绑定的值(图标的class)
+ * @prop {String} size 组件大小
+ * @prop {String} placeholder 占位符
+ * @prop {Boolean} disabled 是否禁用
  */
 const iconfontJson = require("./iconfont.json");
 const eliconJson = require("./el-icon.json");

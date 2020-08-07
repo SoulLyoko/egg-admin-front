@@ -62,7 +62,6 @@ export default {
       this[command]();
     },
     handleContextmenu(event) {
-      console.log("handleContextmenu -> event", event);
       event.preventDefault();
       event.stopPropagation();
       this.contextmenuStyle = {

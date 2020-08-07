@@ -13,8 +13,13 @@
 
 <script>
 /**
- * 部门选择组件
- * @props value:双向绑定值;topLevel:是否显示一级部门;size:组件大小;placeholder:占位符;disabled:是否禁用;clearable:是否可清空;
+ * @component 部门选择组件
+ * @prop {String} value 双向绑定值
+ * @prop {String} size 组件大小
+ * @prop {String} placeholder 占位符
+ * @prop {Boolean} disabled 是否禁用
+ * @prop {Boolean} clearable 是否可清空
+ * @prop {Boolean} topLevel 是否显示一级部门
  */
 import { getTree } from "@/api/sys/dept";
 

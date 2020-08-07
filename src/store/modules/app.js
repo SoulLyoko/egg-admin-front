@@ -3,14 +3,15 @@ import screenfull from "screenfull";
 
 export default {
   state: {
-    themeName: storage.get("themeName") || "default",
-    isFullscreen: false
+    themeName: storage.get("themeName") || "default", //主题名称
+    isFullscreen: false //是否全屏
   },
   getters: {
     themeName: state => state.themeName,
     isFullscreen: state => state.isFullscreen
   },
   actions: {
+    /** 切换全屏 */
     toggleFullscreen({ commit }) {
       if (screenfull.isFullscreen) {
         screenfull.exit();
