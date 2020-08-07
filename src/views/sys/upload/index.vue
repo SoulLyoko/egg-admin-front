@@ -20,7 +20,7 @@ import { tableOption } from "./option";
 import { getList, remove } from "@/api/sys/upload";
 
 export default {
-  name: "sys-template",
+  name: "sys-upload",
   mixins: [crudMixin],
   data() {
     return {

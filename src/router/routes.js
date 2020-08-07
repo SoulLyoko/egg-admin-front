@@ -4,7 +4,7 @@ export const indexPage = {
   meta: {
     title: "首页"
   },
-  component: () => import("@/views/system/index")
+  component: () => import("@/pages/page-index")
 };
 
 export const frameIn = [
@@ -23,7 +23,7 @@ export const frameOut = [
     meta: {
       title: "登录"
     },
-    component: () => import("@/views/system/login")
+    component: () => import("@/pages/page-login")
   },
   {
     path: "/404",
@@ -31,7 +31,7 @@ export const frameOut = [
     meta: {
       title: "找不到页面"
     },
-    component: () => import("@/views/system/error/404")
+    component: () => import("@/pages/page-error/404")
   }
 ];
 

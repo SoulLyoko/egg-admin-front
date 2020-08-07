@@ -1,6 +1,6 @@
 <template>
   <div class="header-menu">
-    <el-menu mode="horizontal" :default-active="activeHeader">
+    <el-menu mode="horizontal" :default-active="activeHeader" :style="{ width: menuWidth }">
       <menuItem :menu="menu" v-for="menu in headerMenu" :key="menu._id"></menuItem>
     </el-menu>
   </div>
@@ -20,6 +20,9 @@ export default {
     ...mapGetters(["headerMenu", "activeMenu"]),
     activeHeader() {
       return this.activeMenu.matched[0].path;
+    },
+    menuWidth() {
+      return this.headerMenu.length * 120 + "px";
     }
   }
 };

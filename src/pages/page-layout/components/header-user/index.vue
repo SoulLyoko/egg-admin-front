@@ -22,8 +22,8 @@
         </el-form-item>
       </el-form>
       <center slot="footer">
-        <el-button size="small" @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" size="small" @click="handleSubmit">确定</el-button>
+        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="handleSubmit">确定</el-button>
       </center>
     </el-dialog>
   </div>
@@ -83,14 +83,13 @@ export default {
     },
     handleSubmit() {
       this.$refs.form.validate(valid => {
-        if (valid) {
-          resetPassword(this.form).then(() => {
-            this.$message.success("密码修改成功,请重新登录");
-            this.logout();
-          });
-        } else {
-          return false;
+        if (!valid) {
+          return;
         }
+        resetPassword(this.form).then(() => {
+          this.$message.success("密码修改成功,请重新登录");
+          this.logout();
+        });
       });
     }
   }

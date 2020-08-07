@@ -20,7 +20,7 @@ import { getSysInfo } from "@/api/sys/sysinfo";
 const version = require("@/../package.json").version;
 
 export default {
-  name: "index-page",
+  name: "page-index",
   data() {
     return {
       appVersion: version,

@@ -29,7 +29,7 @@ import { getList, create, update, remove } from "@/api/sys/user";
 import { getList as getRoleList } from "@/api/sys/role";
 
 export default {
-  name: "upms-user",
+  name: "sys-user",
   mixins: [crudMixin],
   data() {
     return {

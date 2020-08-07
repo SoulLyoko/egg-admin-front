@@ -26,7 +26,7 @@ router.beforeEach(async (to, from, next) => {
   const hasMenu = store.state.menu.headerMenu.length; // 是否已获取菜单
   if (isFrameOut) {
     if (isLogin && to.path === "/login") {
-      // 已登录且前往页面时登录页时，跳转到首页
+      // 已登录且前往页面是登录页时，跳转到首页
       next("/");
     }
   } else {

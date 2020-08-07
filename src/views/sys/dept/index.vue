@@ -17,7 +17,7 @@ import { tableOption } from "./option";
 import { getTree, create, update, remove } from "@/api/sys/dept";
 
 export default {
-  name: "upms-dept",
+  name: "sys-dept",
   mixins: [crudMixin],
   data() {
     return {

@@ -45,7 +45,7 @@ import { getTree as getMenuTree } from "@/api/sys/menu";
 import { mapActions } from "vuex";
 
 export default {
-  name: "upms-role",
+  name: "sys-role",
   mixins: [crudMixin],
   data() {
     return {

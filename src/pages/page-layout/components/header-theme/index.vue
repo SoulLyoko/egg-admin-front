@@ -3,24 +3,14 @@
     <el-tooltip effect="dark" content="主题" placement="bottom">
       <i class="el-icon-brush"></i>
     </el-tooltip>
-    <el-dialog
-      title="主题设置"
-      :visible.sync="dialogVisible"
-      width="30%"
-      append-to-body
-    >
+    <el-dialog title="主题设置" :visible.sync="dialogVisible" width="30%" append-to-body>
       <el-radio-group v-model="activeTheme">
-        <el-radio
-          v-for="theme in themeList"
-          :key="theme.name"
-          :label="theme.name"
-          >{{ theme.title }}</el-radio
-        >
+        <el-radio v-for="theme in themeList" :key="theme.name" :label="theme.name">{{ theme.title }}</el-radio>
       </el-radio-group>
       <center slot="footer">
-        <el-button type="primary" @click="dialogVisible = false"
-          >确 定</el-button
-        >
+        <el-button type="primary" @click="dialogVisible = false">
+          确 定
+        </el-button>
       </center>
     </el-dialog>
   </div>

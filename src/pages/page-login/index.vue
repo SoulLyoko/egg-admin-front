@@ -35,7 +35,7 @@
 import { getCaptcha } from "@/api/sys/account.js";
 
 export default {
-  name: "login-page",
+  name: "page-login",
   data() {
     return {
       form: {

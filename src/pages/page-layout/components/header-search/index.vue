@@ -1,6 +1,6 @@
 <template>
   <div class="header-search">
-    <transition name="fade" mode="out-in">
+    <transition name="el-fade-in-linear" mode="out-in">
       <el-tooltip effect="dark" content="搜索" placement="bottom" v-if="!inputVisible">
         <i class="el-icon-search" @click="showInput"></i>
       </el-tooltip>
@@ -11,6 +11,7 @@
         :fetch-suggestions="querySearch"
         placeholder="输入菜单名称搜索"
         @select="handleSelect"
+        @blur="handleBlur"
         v-if="inputVisible"
         style="width:150px;"
       >
@@ -59,24 +60,15 @@ export default {
     }
   },
   methods: {
-    async showInput() {
+    showInput() {
       this.inputVisible = true;
-      await this.$nextTick();
       setTimeout(() => {
         this.$refs.searchInput.focus();
-      }, 500);
+      }, 400);
     },
     closeInput(delay = false) {
-      clearTimeout(this.timeout);
-      if (delay) {
-        this.timeout = setTimeout(() => {
-          this.inputVisible = false;
-          this.searchKey = "";
-        }, 10000);
-      } else {
-        this.inputVisible = false;
-        this.searchKey = "";
-      }
+      this.inputVisible = false;
+      this.searchKey = "";
     },
     querySearch(queryString, cb) {
       let results = this.routeList;
@@ -85,12 +77,16 @@ export default {
           return item.meta.title.includes(queryString) || item.path.includes(queryString);
         });
       }
-      this.closeInput(true);
       cb(results);
     },
     handleSelect(item) {
       this.menuItemClick(item);
       this.closeInput();
+    },
+    handleBlur() {
+      setTimeout(() => {
+        this.closeInput();
+      }, 100);
     }
   }
 };
