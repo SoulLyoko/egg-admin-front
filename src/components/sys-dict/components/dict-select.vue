@@ -1,6 +1,12 @@
 <template>
   <el-select v-bind="$attrs" v-on="$listeners">
-    <el-option :label="item.label" :value="item.value" v-for="item in $parent.options" :key="item.value"></el-option>
+    <el-option
+      :label="item.label"
+      :value="item.value"
+      :disabled="item.diabled"
+      v-for="item in $parent.options"
+      :key="item.value"
+    ></el-option>
   </el-select>
 </template>
 

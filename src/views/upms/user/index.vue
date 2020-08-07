@@ -16,7 +16,7 @@
         </el-tag>
       </template>
       <template #roleIdsForm="{row}">
-        <dict v-model="row.roleIds" multiple :dictData="roleList"></dict>
+        <sys-dict v-model="row.roleIds" multiple :dictData="roleList"></sys-dict>
       </template>
     </avue-crud>
   </basic-container>

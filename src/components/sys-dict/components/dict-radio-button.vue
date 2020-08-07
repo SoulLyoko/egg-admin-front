@@ -1,14 +1,20 @@
 <template>
   <el-radio-group v-bind="$attrs" v-on="$listeners" v-model="model">
-    <el-radio v-bind="$attrs" :label="item.value" v-for="item in $parent.options" :key="item.value">
+    <el-radio-button
+      v-bind="$attrs"
+      :label="item.value"
+      :disabled="item.diabled"
+      v-for="item in $parent.options"
+      :key="item.value"
+    >
       {{ item.label }}
-    </el-radio>
+    </el-radio-button>
   </el-radio-group>
 </template>
 
 <script>
 export default {
-  name: "dict-radio",
+  name: "dict-radio-button",
   data() {
     return {
       model: ""
