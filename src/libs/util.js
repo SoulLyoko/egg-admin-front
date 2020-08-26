@@ -13,6 +13,7 @@ const appPrefix = `${packageJson.name}-${packageJson.version}`;
  */
 export const storage = {
   set(key, value) {
+    if (!value) return;
     localStorage.setItem(`${appPrefix}-${key}`, JSON.stringify(value));
   },
   get(key) {
@@ -32,6 +33,7 @@ export const storage = {
  */
 export const cookie = {
   set(key, value, config) {
+    if (!value) return;
     jscookie.set(`${appPrefix}-${key}`, value, { expires: 1, ...config });
   },
   get(key) {
