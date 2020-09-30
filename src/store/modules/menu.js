@@ -39,11 +39,7 @@ export default {
   },
   mutations: {
     SET_ASIDE_MENU(state, data) {
-      if (data?.length) {
-        state.asideMenu = data;
-      } else if (state.headerMenu.length) {
-        state.asideMenu = state.headerMenu[0].children;
-      }
+      state.asideMenu = data;
     },
     SET_HEADER_MENU(state, data) {
       state.headerMenu = data;

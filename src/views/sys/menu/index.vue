@@ -61,14 +61,16 @@ export default {
     formData: {
       handler(val) {
         const { component, type } = val;
-        tableOption.column.forEach(item => {
+        const column = this.$refs.crud?.$refs.dialogForm?.$refs.tableForm?.option.column;
+        if (!column) return;
+        column.forEach(item => {
           switch (item.prop) {
             case "query":
               item.display = component?.includes("/");
               break;
             case "url":
             case "blank":
-              item.display = component === "Iframe";
+              item.display = type === "0" && component === "Iframe";
               break;
             case "icon":
             case "path":

@@ -21,6 +21,8 @@ export default {
     logout({ commit }) {
       cookie.remove("token");
       commit("SET_USER_INFO", {});
+      commit("SET_HEADER_MENU", [], { root: true });
+      commit("SET_ASIDE_MENU", [], { root: true });
       router.push("/login");
     }
   },
